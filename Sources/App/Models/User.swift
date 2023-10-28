@@ -62,11 +62,11 @@ final class User: Model, Content, ModelAuthenticatable {
     
     // JWT payload
     struct UserJWTPayload: JWTPayload {
-        var userID: UUID
+        var user: User
         var exp: ExpirationClaim
         
-        init(userID: UUID) {
-            self.userID = userID
+        init(user: User) {
+            self.user = user
             self.exp = ExpirationClaim(value: Date().addingTimeInterval(60 * 60)) // 1 hour expiration
         }
         

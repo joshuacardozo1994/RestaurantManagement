@@ -19,7 +19,7 @@ struct AuthenticationController: RouteCollection {
         // Add more authentication routes here if needed
     }
 
-    func login(_ req: Request) async throws -> String {
+    func login(_ req: Request) async throws -> UserResponse {
         let loginRequest = try req.content.decode(LoginRequest.self)
         
         guard let user = try await User.query(on: req.db)
@@ -35,11 +35,11 @@ struct AuthenticationController: RouteCollection {
         }
         
         // Create JWT payload
-        let payload = try User.UserJWTPayload(userID: user.requireID())
+        let payload = User.UserJWTPayload(user: user)
             
         let token = try req.jwt.sign(payload)
         
-        return token
+        return UserResponse(id: try user.requireID(), username: user.username, email: user.email, profilePicture: user.profilePicture, token: token)
     }
 
 //    func register(_ req: Request) async throws -> User {

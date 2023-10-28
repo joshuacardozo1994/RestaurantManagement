@@ -21,7 +21,7 @@ struct JWTAuthMiddleware: AsyncMiddleware {
             let payload = try request.jwt.verify(token, as: User.UserJWTPayload.self)
             
             // Fetch the user based on the ID from the payload
-            if let user = try await User.find(payload.userID, on: request.db) {
+            if let user = try await User.find(payload.user.requireID(), on: request.db) {
                 request.auth.login(user) // Log in the user
             } else {
                 throw Abort(.unauthorized)
