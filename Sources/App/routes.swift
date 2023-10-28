@@ -3,6 +3,7 @@ import Vapor
 
 func routes(_ app: Application) throws {
     try app.register(collection: AuthenticationController())
+    try app.register(collection: MenuController())
     app.get { req async in
         "It works!"
     }

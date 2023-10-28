@@ -39,7 +39,7 @@ struct AuthenticationController: RouteCollection {
             
         let token = try req.jwt.sign(payload)
         
-        return UserResponse(id: try user.requireID(), username: user.username, email: user.email, profilePicture: user.profilePicture, token: token)
+        return UserResponse(id: try user.requireID(), username: user.username, type: user.type, email: user.email, profilePicture: user.profilePicture, token: token)
     }
 
 //    func register(_ req: Request) async throws -> User {

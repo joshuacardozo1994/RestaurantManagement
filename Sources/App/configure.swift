@@ -23,6 +23,8 @@ public func configure(_ app: Application) async throws {
     try routes(app)
     
     app.migrations.add(CreateUser())
+    app.migrations.add(CreateCategory())
+    app.migrations.add(CreateMenu())
     
     try app.autoMigrate().wait()
 

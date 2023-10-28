@@ -22,6 +22,10 @@ final class User: Model, Content, ModelAuthenticatable {
     // Other fields
     @Field(key: "username")
     var username: String
+    
+    // User type: Admin, Accounting, Waiter
+    @Enum(key: "type")
+    var type: UserType
 
     @Field(key: "password_hash")
     var passwordHash: String
@@ -73,5 +77,11 @@ final class User: Model, Content, ModelAuthenticatable {
         func verify(using signer: JWTSigner) throws {
             try self.exp.verifyNotExpired()
         }
+    }
+    
+    enum UserType: String, Codable {
+        case admin
+        case accounting
+        case waiter
     }
 }
