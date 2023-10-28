@@ -2,6 +2,7 @@ import Fluent
 import Vapor
 
 func routes(_ app: Application) throws {
+    try app.register(collection: AuthenticationController())
     app.get { req async in
         "It works!"
     }
@@ -10,5 +11,21 @@ func routes(_ app: Application) throws {
         "Hello, world!"
     }
 
-    try app.register(collection: TodoController())
+    // Protected routes
+        let protectedRoutes = app.grouped("protected").grouped(JWTAuthMiddleware())
+        protectedRoutes.get("dashboard") { req async throws -> String in
+            // Your protected logic here
+            return "Protected Dashboard"
+        }
+
+        // Another protected route
+        protectedRoutes.get("profile") { req async throws -> String in
+            // Your protected logic here
+            return "Protected Profile"
+        }
+    
+    
+    
+    
+
 }
