@@ -17,6 +17,9 @@ final class Menu: Model, Content {
     @Field(key: "name")
     var name: String
     
+    @Field(key: "subtext")
+    var subtext: String?
+    
     @Field(key: "position")
     var position: Int
     
@@ -37,9 +40,10 @@ final class Menu: Model, Content {
     
     init() {}
     
-    init(id: UUID? = nil, name: String, position: Int, description: String?, price: Double, imageUrl: String, enabled: Bool, categoryId: UUID) {
+    init(id: UUID? = nil, name: String, subtext: String? = nil, position: Int, description: String? = nil, price: Double, imageUrl: String? = nil, enabled: Bool, categoryId: UUID) {
         self.id = id
         self.name = name
+        self.subtext = subtext
         self.position = position
         self.description = description
         self.price = price

@@ -12,6 +12,7 @@ struct CreateMenu: AsyncMigration {
         try await database.schema("menus")
             .id()
             .field("name", .string, .required)
+            .field("subtext", .string)
             .field("position", .int, .required)
             .field("description", .string)
             .field("price", .double, .required)

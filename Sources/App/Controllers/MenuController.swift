@@ -82,41 +82,7 @@ struct MenuController: RouteCollection {
         return category
     }
     
-    func getAllCategoriesHandler(_ req: Request) async throws -> [CategoryResponse] {
-        
-//        let categories = [
-//            Category(name: "Beverages", position: 0, description: nil, type: .drinks),
-//            Category(name: "Hot beverages", position: 1, description: nil, type: .drinks),
-//            Category(name: "Mocktails", position: 2, description: nil, type: .drinks),
-//            Category(name: "Cocktails", position: 3, description: nil, type: .drinks),
-//            Category(name: "Vodka (60ml)", position: 4, description: nil, type: .drinks),
-//            Category(name: "Whiskey", position: 5, description: nil, type: .drinks),
-//            Category(name: "Rum (60ml)", position: 6, description: nil, type: .drinks),
-//            Category(name: "Brandy (60ml)", position: 7, description: nil, type: .drinks),
-//            Category(name: "Wine", position: 8, description: nil, type: .drinks),
-//            Category(name: "Local Favourites (60ml)", position: 9, description: nil, type: .drinks),
-//            Category(name: "Gin (60ml)", position: 10, description: nil, type: .drinks),
-//            Category(name: "Others", position: 11, description: nil, type: .drinks),
-//            Category(name: "Soups", position: 12, description: nil, type: .food),
-//            Category(name: "Fish", position: 13, description: nil, type: .food),
-//            Category(name: "Shell Fish", position: 14, description: nil, type: .food),
-//            Category(name: "Veg", position: 15, description: nil, type: .food),
-//            Category(name: "Chicken", position: 16, description: nil, type: .food),
-//            Category(name: "Pork", position: 17, description: nil, type: .food),
-//            Category(name: "Beef", position: 18, description: nil, type: .food),
-//            Category(name: "Others", position: 19, description: nil, type: .food),
-//            Category(name: "Rice", position: 20, description: nil, type: .food),
-//            Category(name: "Desserts", position: 21, description: nil, type: .food),
-//        ]
-//        
-//        Task {
-//            for category in categories {
-//                try await category.save(on: req.db)
-//            }
-//        }
-//        
-//        return categories
-        
+    func getAllCategoriesHandler(_ req: Request) async throws -> [CategoryResponse] {        
         let categories = try await Category.query(on: req.db)
             .with(\.$menus)
             .all()
