@@ -29,18 +29,22 @@ final class Menu: Model, Content {
     @Field(key: "image_url")
     var imageUrl: String?
     
+    @Field(key: "enabled")
+    var enabled: Bool
+    
     @Parent(key: "category_id")
     var category: Category
     
     init() {}
     
-    init(id: UUID? = nil, name: String, position: Int, description: String?, price: Double, imageUrl: String, categoryId: UUID) {
+    init(id: UUID? = nil, name: String, position: Int, description: String?, price: Double, imageUrl: String, enabled: Bool, categoryId: UUID) {
         self.id = id
         self.name = name
         self.position = position
         self.description = description
         self.price = price
         self.imageUrl = imageUrl
+        self.enabled = enabled
         self.$category.id = categoryId
     }
 }

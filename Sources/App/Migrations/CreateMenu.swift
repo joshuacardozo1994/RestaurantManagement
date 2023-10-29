@@ -16,6 +16,7 @@ struct CreateMenu: AsyncMigration {
             .field("description", .string)
             .field("price", .double, .required)
             .field("image_url", .string)
+            .field("enabled", .bool)
             .field("category_id", .uuid, .required, .references("categories", "id"))
             .create()
     }

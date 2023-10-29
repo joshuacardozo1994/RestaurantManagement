@@ -13,4 +13,5 @@ struct MenuResponse: Content {
     var description: String?
     var price: Double
     var imageUrl: String?
+    var enabled: Bool
 }
