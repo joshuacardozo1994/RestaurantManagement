@@ -27,7 +27,7 @@ final class Category: Model, Content {
     var type: CategoryType
     
     @Children(for: \.$category)
-    var menus: [Menu]
+    var items: [Item]
     
     init() {}
     

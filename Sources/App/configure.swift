@@ -25,7 +25,10 @@ public func configure(_ app: Application) async throws {
     
     app.migrations.add(CreateUser())
     app.migrations.add(CreateCategory())
-    app.migrations.add(CreateMenu())
+    app.migrations.add(CreateItem())
+    app.migrations.add(CreateBill())
+    app.migrations.add(CreateOrder())
+    app.migrations.add(CreateTable())
     
     try app.autoMigrate().wait()
 

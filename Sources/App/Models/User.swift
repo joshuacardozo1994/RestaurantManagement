@@ -83,5 +83,6 @@ final class User: Model, Content, ModelAuthenticatable {
         case admin
         case accounting
         case waiter
+        case chef
     }
 }

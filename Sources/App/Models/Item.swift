@@ -8,8 +8,8 @@
 import Vapor
 import Fluent
 
-final class Menu: Model, Content {
-    static let schema = "menus"
+final class Item: Model, Content {
+    static let schema = "items"
     
     @ID(key: .id)
     var id: UUID?

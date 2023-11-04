@@ -7,9 +7,10 @@
 
 import Vapor
 
-struct MenuResponse: Content {
+struct ItemResponse: Content {
     var id: UUID
     var name: String
+    var subtext: String?
     var description: String?
     var price: Double
     var imageUrl: String?

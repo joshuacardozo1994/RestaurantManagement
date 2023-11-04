@@ -12,5 +12,5 @@ struct CategoryResponse: Content {
     var name: String
     var description: String?
     var type: CategoryType
-    var menus: [MenuResponse]
+    var items: [ItemResponse]
 }

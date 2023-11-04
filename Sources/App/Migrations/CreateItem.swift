@@ -7,9 +7,9 @@
 
 import Fluent
 
-struct CreateMenu: AsyncMigration {
+struct CreateItem: AsyncMigration {
     func prepare(on database: Database) async throws {
-        try await database.schema("menus")
+        try await database.schema("items")
             .id()
             .field("name", .string, .required)
             .field("subtext", .string)
@@ -23,7 +23,7 @@ struct CreateMenu: AsyncMigration {
     }
 
     func revert(on database: Database) async throws {
-        try await database.schema("menus").delete()
+        try await database.schema("items").delete()
     }
 }
 
