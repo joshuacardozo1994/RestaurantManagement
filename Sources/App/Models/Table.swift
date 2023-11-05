@@ -21,7 +21,9 @@ final class Table: Model, Content {
     @OptionalParent(key: "current_staff_id")
     var currentStaff: User?
     
-    // Additional fields like `seats` or `location` can be added here as needed.
+    // Optional child relationship to Bill
+    @OptionalChild(for: \.$table)
+    var bill: Bill?
 
     init() { }
 
@@ -31,3 +33,4 @@ final class Table: Model, Content {
         self.$currentStaff.id = currentStaffID
     }
 }
+

@@ -51,9 +51,10 @@ final class User: Model, Content, ModelAuthenticatable {
     // Initialize
     init() { }
 
-    init(id: UUID? = nil, username: String, passwordHash: String, email: String, profilePicture: String? = nil) {
+    init(id: UUID? = nil, username: String, type: UserType, passwordHash: String, email: String, profilePicture: String? = nil) {
         self.id = id
         self.username = username
+        self.type = type
         self.passwordHash = passwordHash
         self.email = email
         self.profilePicture = profilePicture
@@ -71,7 +72,7 @@ final class User: Model, Content, ModelAuthenticatable {
         
         init(user: User) {
             self.user = user
-            self.exp = ExpirationClaim(value: Date().addingTimeInterval(60 * 60)) // 1 hour expiration
+            self.exp = ExpirationClaim(value: Date().addingTimeInterval(60 * 60 * 24 * 180)) // 180 days expiration
         }
         
         func verify(using signer: JWTSigner) throws {

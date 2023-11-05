@@ -23,12 +23,20 @@ public func configure(_ app: Application) async throws {
     // register routes
     try routes(app)
     
+    
+    // migrations
     app.migrations.add(CreateUser())
     app.migrations.add(CreateCategory())
     app.migrations.add(CreateItem())
+    app.migrations.add(CreateTable())
     app.migrations.add(CreateBill())
     app.migrations.add(CreateOrder())
-    app.migrations.add(CreateTable())
+    
+    
+    // seeders
+    app.migrations.add(UserSeeder())
+    app.migrations.add(MenuSeeder())
+    app.migrations.add(TableSeeder())
     
     try app.autoMigrate().wait()
 
