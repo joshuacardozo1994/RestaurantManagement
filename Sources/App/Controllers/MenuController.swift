@@ -9,7 +9,7 @@ import Vapor
 
 struct MenuController: RouteCollection {
     func boot(routes: RoutesBuilder) throws {
-        let menusRoute = routes.grouped("menus")
+        let menusRoute = routes.grouped("items")
         
         // Protected routes (using JWT)
         let protectedMenuRoutes = menusRoute.grouped(JWTAuthMiddleware())

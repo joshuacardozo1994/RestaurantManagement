@@ -12,7 +12,10 @@ struct CreateTable: AsyncMigration {
         try await database.schema("tables")
             .id()
             .field("number", .int, .required)
+            .unique(on: "number")
             .field("current_staff_id", .uuid, .references("users", "id"))
+            .field("created_at", .datetime)
+            .field("updated_at", .datetime)
             .create()
     }
 

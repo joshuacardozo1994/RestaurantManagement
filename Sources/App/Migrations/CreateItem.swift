@@ -19,6 +19,8 @@ struct CreateItem: AsyncMigration {
             .field("image_url", .string)
             .field("enabled", .bool)
             .field("category_id", .uuid, .required, .references("categories", "id"))
+            .field("created_at", .datetime)
+            .field("updated_at", .datetime)
             .create()
     }
 

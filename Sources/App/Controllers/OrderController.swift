@@ -18,6 +18,9 @@ struct OrderController: RouteCollection {
         protectedOrderRoutes.put(":orderID", use: updateOrderHandler)
         protectedOrderRoutes.delete(":orderID", use: deleteOrderHandler)
         
+        let batchedorders = protectedOrderRoutes.grouped("batch")
+        batchedorders.post(use: createBatchedOrdersHandler)
+        
         
         let billsRoute = routes.grouped("bills")
         let protectedBillRoutes = billsRoute.grouped(JWTAuthMiddleware())
@@ -51,6 +54,16 @@ struct OrderController: RouteCollection {
         return order
     }
     
+    func createBatchedOrdersHandler(_ req: Request) async throws -> [Order] {
+        let orders = try req.content.decode([Order].self)
+        
+        for order in orders {
+            try await order.save(on: req.db)
+        }
+        
+        return orders
+    }
+    
     func updateOrderHandler(_ req: Request) async throws -> Order {
         let updatedOrder = try req.content.decode(Order.self)
         
@@ -79,9 +92,15 @@ struct OrderController: RouteCollection {
     }
 
     func getSingleBillHandler(_ req: Request) async throws -> Bill {
-        guard let bill = try await Bill.find(req.parameters.get("billID"), on: req.db) else {
+        guard let billID = req.parameters.get("billID", as: UUID.self) else {
+            throw Abort(.badRequest, reason: "Invalid bill ID")
+        }
+
+        guard let bill = try await Bill.find(billID, on: req.db) else {
             throw Abort(.notFound)
         }
+
+        try await bill.$orders.load(on: req.db)
         return bill
     }
     

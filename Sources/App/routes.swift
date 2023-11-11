@@ -5,6 +5,7 @@ func routes(_ app: Application) throws {
     try app.register(collection: AuthenticationController())
     try app.register(collection: MenuController())
     try app.register(collection: OrderController())
+    try app.register(collection: TableController())
     app.get { req async in
         "It works!"
     }

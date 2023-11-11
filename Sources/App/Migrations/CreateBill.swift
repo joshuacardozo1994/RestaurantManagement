@@ -13,6 +13,8 @@ struct CreateBill: AsyncMigration {
             .id()
             .field("table_id", .uuid, .required, .references("tables", "id"))
             .field("status", .string, .required, .custom("DEFAULT 'open'"))
+            .field("created_at", .datetime)
+            .field("updated_at", .datetime)
             .create()
     }
 

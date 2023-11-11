@@ -14,6 +14,8 @@ struct CreateOrder: AsyncMigration {
             .field("quantity", .int, .required)
             .field("item_id", .uuid, .required, .references("items", "id"))
             .field("bill_id", .uuid, .required, .references("bills", "id"))
+            .field("created_at", .datetime)
+            .field("updated_at", .datetime)
             .create()
     }
 

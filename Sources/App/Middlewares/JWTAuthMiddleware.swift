@@ -22,6 +22,7 @@ struct JWTAuthMiddleware: AsyncMiddleware {
             
             // Fetch the user based on the ID from the payload
             if let user = try await User.find(payload.user.requireID(), on: request.db) {
+                guard user.type != .banned else { throw Abort(.forbidden) }
                 request.auth.login(user) // Log in the user
             } else {
                 throw Abort(.unauthorized)
