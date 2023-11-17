@@ -10,14 +10,9 @@ import Vapor
 
 struct UserSeeder: AsyncMigration {
     func prepare(on database: Database) async throws {
-        let users = [
-            User(username: "joshuacardozo", type: .admin, passwordHash: try Bcrypt.hash("joshuacardozo"), email: "joshua.cardozo@gmail.com"),
-            User(username: "amandacardozo", type: .admin, passwordHash: try Bcrypt.hash("amandacardozo"), email: "amanda.cardozo@gmail.com"),
-            User(username: "monicacardozo", type: .admin, passwordHash: try Bcrypt.hash("monicacardozo"), email: "monica.cardozo@gmail.com")
-        ]
-        
-        for user in users {
-            try await user.create(on: database)
+        if let adminUsername = Environment.get("ADMIN_USERNAME"), let adminPassword = Environment.get("ADMIN_PASSWORD"), let adminEmail = Environment.get("ADMIN_EMAIL") {
+            let adminUser = User(username: adminUsername, type: .admin, verified: true, passwordHash: try Bcrypt.hash(adminPassword), email: adminEmail)
+            try await adminUser.create(on: database)
         }
     }
     

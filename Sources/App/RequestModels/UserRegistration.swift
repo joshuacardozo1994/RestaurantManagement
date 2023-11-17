@@ -11,6 +11,7 @@ struct UserRegistration: Content, Validatable {
     let username: String
     let email: String
     let password: String
+    let type: User.UserType
 
     static func validations(_ validations: inout Validations) {
         validations.add("username", as: String.self, is: !.empty)

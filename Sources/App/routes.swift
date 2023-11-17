@@ -6,29 +6,21 @@ func routes(_ app: Application) throws {
     try app.register(collection: MenuController())
     try app.register(collection: OrderController())
     try app.register(collection: TableController())
+    
+    
     app.get { req async in
-        "It works!"
-    }
-
-    app.get("hello") { req async -> String in
-        "Hello, world!"
+        HTTPStatus.ok
     }
 
     // Protected routes
-    let protectedRoutes = app.grouped("protected").grouped(JWTAuthMiddleware())
+    let protectedRoutes = app.grouped("protected").grouped(JWTAuthMiddleware(authorizedUserTypes: .validUsers))
     protectedRoutes.get("dashboard") { req async throws -> String in
-        // Your protected logic here
         return "Protected Dashboard"
     }
-
-    // Another protected route
-    protectedRoutes.get("profile") { req async throws -> String in
-        // Your protected logic here
-        return "Protected Profile"
+    
+    // Protected routes
+    let adminRoutes = app.grouped("admin").grouped(JWTAuthMiddleware(authorizedUserTypes: [.admin]))
+    adminRoutes.get("dashboard") { req async throws -> String in
+        return "Protected admin Dashboard"
     }
-    
-    
-    
-    
-
 }

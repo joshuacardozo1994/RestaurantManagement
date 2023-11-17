@@ -13,5 +13,6 @@ struct UserResponse: Content {
     var type: User.UserType
     var email: String
     var profilePicture: String?
-    var token: String
+    var token: String?
+    var verified: Bool
 }

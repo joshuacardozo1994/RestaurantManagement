@@ -14,7 +14,9 @@ let package = Package(
         // 🐘 Fluent driver for Postgres.
         .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.7.2"),
         // JWT package 
-        .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0")
+        .package(url: "https://github.com/vapor/jwt.git", from: "4.0.0"),
+        // to produce test data
+        .package(url: "https://github.com/vadymmarkov/Fakery", from: "5.0.0")
     ],
     targets: [
         .executableTarget(
@@ -23,7 +25,8 @@ let package = Package(
                 .product(name: "Fluent", package: "fluent"),
                 .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver"),
                 .product(name: "Vapor", package: "vapor"),
-                .product(name: "JWT", package: "jwt")
+                .product(name: "JWT", package: "jwt"),
+                .product(name: "Fakery", package: "Fakery")
             ]
         ),
         .testTarget(name: "AppTests", dependencies: [
@@ -34,6 +37,7 @@ let package = Package(
             .product(name: "Vapor", package: "vapor"),
             .product(name: "Fluent", package: "Fluent"),
             .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver"),
+            .product(name: "Fakery", package: "Fakery")
         ])
     ]
 )

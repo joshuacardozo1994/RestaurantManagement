@@ -60,6 +60,9 @@ final class User: Model, Content, ModelAuthenticatable {
     // User type: Admin, Accounting, Waiter
     @Enum(key: "type")
     var type: UserType
+    
+    @Field(key: "verified")
+    var verified: Bool
 
     @Field(key: "password_hash")
     var passwordHash: String
@@ -85,10 +88,11 @@ final class User: Model, Content, ModelAuthenticatable {
     // Initialize
     init() { }
 
-    init(id: UUID? = nil, username: String, type: UserType, passwordHash: String, email: String, profilePicture: String? = nil) {
+    init(id: UUID? = nil, username: String, type: UserType, verified: Bool, passwordHash: String, email: String, profilePicture: String? = nil) {
         self.id = id
         self.username = username
         self.type = type
+        self.verified = verified
         self.passwordHash = passwordHash
         self.email = email
         self.profilePicture = profilePicture
@@ -97,29 +101,5 @@ final class User: Model, Content, ModelAuthenticatable {
     // Method required for `ModelAuthenticatable`
     func verify(password: String) throws -> Bool {
         try Bcrypt.verify(password, created: self.passwordHash)
-    }
-    
-    // JWT payload
-    struct UserJWTPayload: JWTPayload {
-        var user: User
-        var exp: ExpirationClaim
-        
-        init(user: User) {
-            self.user = user
-            self.exp = ExpirationClaim(value: Date().addingTimeInterval(60 * 60 * 24 * 180)) // 180 days expiration
-        }
-        
-        func verify(using signer: JWTSigner) throws {
-            try self.exp.verifyNotExpired()
-        }
-    }
-    
-    enum UserType: String, Codable {
-        case admin
-        case accounting
-        case waiter
-        case chef
-        
-        case banned
     }
 }

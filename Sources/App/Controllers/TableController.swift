@@ -10,7 +10,7 @@ import Vapor
 struct TableController: RouteCollection {
     func boot(routes: RoutesBuilder) throws {
         let tablesRoute = routes.grouped("tables")
-        let protectedTablesRouteRoutes = tablesRoute.grouped(JWTAuthMiddleware())
+        let protectedTablesRouteRoutes = tablesRoute.grouped(JWTAuthMiddleware(authorizedUserTypes: [.admin]))
         
         protectedTablesRouteRoutes.get(use: getAllTablesHandler)
         protectedTablesRouteRoutes.get(":tableID", use: getSingleTableHandler)

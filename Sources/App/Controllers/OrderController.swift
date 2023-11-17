@@ -10,7 +10,7 @@ import Vapor
 struct OrderController: RouteCollection {
     func boot(routes: RoutesBuilder) throws {
         let ordersRoute = routes.grouped("orders")
-        let protectedOrderRoutes = ordersRoute.grouped(JWTAuthMiddleware())
+        let protectedOrderRoutes = ordersRoute.grouped(JWTAuthMiddleware(authorizedUserTypes: .orderPlacingUserTypes))
         
         protectedOrderRoutes.get(use: getAllOrdersHandler)
         protectedOrderRoutes.get(":orderID", use: getSingleOrderHandler)
@@ -23,7 +23,7 @@ struct OrderController: RouteCollection {
         
         
         let billsRoute = routes.grouped("bills")
-        let protectedBillRoutes = billsRoute.grouped(JWTAuthMiddleware())
+        let protectedBillRoutes = billsRoute.grouped(JWTAuthMiddleware(authorizedUserTypes: .orderPlacingUserTypes))
         
         protectedBillRoutes.get(use: getAllBillsHandler)
         protectedBillRoutes.get(":billID", use: getSingleBillHandler)

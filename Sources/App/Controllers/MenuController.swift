@@ -12,7 +12,7 @@ struct MenuController: RouteCollection {
         let menusRoute = routes.grouped("items")
         
         // Protected routes (using JWT)
-        let protectedMenuRoutes = menusRoute.grouped(JWTAuthMiddleware())
+        let protectedMenuRoutes = menusRoute.grouped(JWTAuthMiddleware(authorizedUserTypes: [.admin]))
         protectedMenuRoutes.post(use: createMenuHandler)
         protectedMenuRoutes.put(":itemID", use: updateMenuHandler)
         protectedMenuRoutes.delete(":itemID", use: deleteMenuHandler)
@@ -25,7 +25,7 @@ struct MenuController: RouteCollection {
         let categoriesRoute = routes.grouped("categories")
         
         // Protected routes
-        let protectedCategoryRoutes = categoriesRoute.grouped(JWTAuthMiddleware())
+        let protectedCategoryRoutes = categoriesRoute.grouped(JWTAuthMiddleware(authorizedUserTypes: [.admin]))
         protectedCategoryRoutes.post(use: createCategoryHandler)
         protectedCategoryRoutes.put(":categoryID", use: updateCategoryHandler)
         protectedCategoryRoutes.delete(":categoryID", use: deleteCategoryHandler)
