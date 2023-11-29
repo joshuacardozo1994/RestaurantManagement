@@ -16,10 +16,11 @@ struct AuthenticationController: RouteCollection {
         let authRoutes = routes.grouped("auth")
         authRoutes.post("login", use: login)
         authRoutes.post("register", use: register)
-        authRoutes.get("users", use: getAllUsers)
+        
         
         let protectedUsersRoutes = authRoutes.grouped(JWTAuthMiddleware(authorizedUserTypes: [.admin]))
         protectedUsersRoutes.patch("update", ":userID", use: updateUser)
+        protectedUsersRoutes.get("users", use: getAllUsers)
         // Add more authentication routes here if needed
     }
 
@@ -51,7 +52,6 @@ struct AuthenticationController: RouteCollection {
     }
     
     func getAllUsers(_ req: Request) async throws -> [UserResponse] {
-
         let users = try await User.query(on: req.db).all()
         return try users.map { try $0.convertToUserResponse(token: nil) }
     }

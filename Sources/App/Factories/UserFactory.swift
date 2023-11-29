@@ -10,7 +10,7 @@ import Foundation
 import Fakery
 
 struct UserFactory {
-    static func create(username: String? = nil, type: User.UserType, verified: Bool, email: String? = nil) -> User {
+    static func create(username: String? = nil, type: User.UserType, verified: Bool = false, email: String? = nil) -> User {
         let faker = Faker()
 
         let newUser = User(
