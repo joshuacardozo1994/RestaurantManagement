@@ -10,9 +10,10 @@ import Vapor
 struct ItemResponse: Content {
     var id: UUID
     var name: String
-    var subtext: String?
+    var prefix: String?
+    var suffix: String?
     var description: String?
     var price: Double
     var imageUrl: String?
-    var enabled: Bool
+    var visibilityScope: Item.VisibilityScope
 }

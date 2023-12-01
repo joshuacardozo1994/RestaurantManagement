@@ -44,8 +44,11 @@ final class Item: Model, Content {
     @Field(key: "name")
     var name: String
     
-    @Field(key: "subtext")
-    var subtext: String?
+    @Field(key: "prefix")
+    var prefix: String?
+    
+    @Field(key: "suffix")
+    var suffix: String?
     
     @Field(key: "position")
     var position: Int
@@ -59,8 +62,8 @@ final class Item: Model, Content {
     @Field(key: "image_url")
     var imageUrl: String?
     
-    @Field(key: "enabled")
-    var enabled: Bool
+    @Field(key: "visibility_scope")
+    var visibilityScope: VisibilityScope
     
     @Parent(key: "category_id")
     var category: Category
@@ -75,16 +78,25 @@ final class Item: Model, Content {
     
     init() {}
     
-    init(id: UUID? = nil, name: String, subtext: String? = nil, position: Int, description: String? = nil, price: Double, imageUrl: String? = nil, enabled: Bool, categoryId: UUID) {
+    init(id: UUID? = nil, name: String, prefix: String? = nil, suffix: String? = nil, position: Int, description: String? = nil, price: Double, imageUrl: String? = nil, visibilityScope: VisibilityScope, categoryId: UUID) {
         self.id = id
         self.name = name
-        self.subtext = subtext
+        self.prefix = prefix
+        self.suffix = suffix
         self.position = position
         self.description = description
         self.price = price
         self.imageUrl = imageUrl
-        self.enabled = enabled
+        self.visibilityScope = visibilityScope
         self.$category.id = categoryId
+    }
+}
+
+extension Item {
+    enum VisibilityScope: String, Codable {
+        case menu
+        case bill
+        case both
     }
 }
 

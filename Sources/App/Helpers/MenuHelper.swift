@@ -17,7 +17,7 @@ struct MenuHelper {
         Category(name: "Mocktails", position: 2, description: nil, type: .drinks),
         Category(name: "Cocktails", position: 3, description: nil, type: .drinks),
         Category(name: "Vodka (60ml)", position: 4, description: nil, type: .drinks),
-        Category(name: "Whiskey", position: 5, description: nil, type: .drinks),
+        Category(name: "Whiskey (60ml)", position: 5, description: nil, type: .drinks),
         Category(name: "Rum (60ml)", position: 6, description: nil, type: .drinks),
         Category(name: "Brandy (60ml)", position: 7, description: nil, type: .drinks),
         Category(name: "Wine", position: 8, description: nil, type: .drinks),
@@ -92,20 +92,24 @@ struct MenuHelper {
     
     private static func addBeverageItems(_ database: Database, categoryId: UUID) async throws {
         let beverages = [
-            Item(name: "Soda", subtext: nil, position: 0, description: nil, price: 20, enabled: true, categoryId: categoryId),
-            Item(name: "Soft Drinks", subtext: "Coca-cola, Limca, Sprite, Thums up", position: 1, description: nil, price: 30, enabled: true, categoryId: categoryId),
-            Item(name: "Coca-cola", subtext: nil, position: 1, description: nil, price: 30, enabled: false, categoryId: categoryId),
-            Item(name: "Limca", subtext: nil, position: 1, description: nil, price: 30, enabled: false, categoryId: categoryId),
-            Item(name: "Sprite", subtext: nil, position: 1, description: nil, price: 30, enabled: false, categoryId: categoryId),
-            Item(name: "Thums up", subtext: nil, position: 1, description: nil, price: 30, enabled: false, categoryId: categoryId),
-            Item(name: "Tonic Water", subtext: nil, position: 2, description: nil, price: 90, enabled: true, categoryId: categoryId),
-            Item(name: "Fresh Lemon Soda", subtext: nil, position: 3, description: nil, price: 90, enabled: true, categoryId: categoryId),
-            Item(name: "Fresh Lemon Water", subtext: nil, position: 4, description: nil, price: 70, enabled: true, categoryId: categoryId),
-            Item(name: "Fresh Ginger Lemon Soda", subtext: nil, position: 5, description: nil, price: 120, enabled: true, categoryId: categoryId),
-            Item(name: "Orange/Mango Juice", subtext: "canned", position: 6, description: nil, price: 100, enabled: true, categoryId: categoryId),
-            Item(name: "Orange Juice", subtext: "canned", position: 6, description: nil, price: 100, enabled: true, categoryId: categoryId),
-            Item(name: "Mango Juice", subtext: "canned", position: 6, description: nil, price: 100, enabled: true, categoryId: categoryId),
-            Item(name: "Mineral Water", subtext: nil, position: 7, description: nil, price: 30, enabled: true, categoryId: categoryId)
+            Item(name: "Soda", suffix: nil, position: 0, description: nil, price: 20, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Soft Drinks", suffix: nil, position: 1, description: "Coca-cola, Limca, Sprite, Thums up, Maaza", price: 30, visibilityScope: .menu, categoryId: categoryId),
+            Item(name: "Coca-cola", suffix: nil, position: 1, description: nil, price: 30, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Limca", suffix: nil, position: 1, description: nil, price: 30, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Sprite", suffix: nil, position: 1, description: nil, price: 30, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Thums up", suffix: nil, position: 1, description: nil, price: 30, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Maaza", suffix: nil, position: 1, description: nil, price: 30, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Tonic Water", suffix: nil, position: 2, description: nil, price: 90, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Fresh Lemon Soda", suffix: nil, position: 3, description: nil, price: 90, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Fresh Lemon Water", suffix: nil, position: 4, description: nil, price: 70, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Fresh Ginger Lemon Soda", suffix: nil, position: 5, description: nil, price: 120, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Orange/Mango Juice", suffix: "canned", position: 6, description: nil, price: 120, visibilityScope: .menu, categoryId: categoryId),
+            Item(name: "Orange Juice", suffix: "canned", position: 6, description: nil, price: 120, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Mango Juice", suffix: "canned", position: 6, description: nil, price: 120, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Mineral Water", suffix: "1L", position: 7, description: nil, price: 30, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Mineral Water", suffix: "500 mL", position: 7, description: nil, price: 20, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Fresh Juice", suffix: nil, position: 8, description: nil, price: 160, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Diet Coke", suffix: nil, position: 9, description: nil, price: 60, visibilityScope: .both, categoryId: categoryId)
         ]
         
         // Additional code to save `beverages` to your database or perform other actions can go here
@@ -116,9 +120,9 @@ struct MenuHelper {
     
     private static func addCoffeeTeaItems(_ database: Database, categoryId: UUID) async throws {
         let coffeeTeaItems = [
-            Item(name: "Milk Coffee", subtext: nil, position: 0, description: nil, price: 40, enabled: true, categoryId: categoryId),
-            Item(name: "Black Coffee", subtext: nil, position: 1, description: nil, price: 30, enabled: true, categoryId: categoryId),
-            Item(name: "Black Tea", subtext: nil, position: 2, description: nil, price: 20, enabled: true, categoryId: categoryId)
+            Item(name: "Milk Coffee", suffix: nil, position: 0, description: nil, price: 40, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Black Coffee", suffix: nil, position: 1, description: nil, price: 30, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Black Tea", suffix: nil, position: 2, description: nil, price: 20, visibilityScope: .both, categoryId: categoryId)
         ]
         
         // Additional code to save `coffeeTeaItems` to your database can go here.
@@ -129,13 +133,14 @@ struct MenuHelper {
     
     private static func addAllMocktails(_ database: Database, categoryId: UUID) async throws {
         let menus = [
-            Item(name: "Mock Whiskey", position: 0, description: "Apple juice, lime juice, ginger ale, lime juice, soda", price: 150, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Virgin Mojito", position: 1, description: "Mint, lime juice, sugar, soda, served over ice", price: 220, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Virgin Passion Fruit Mojito", position: 2, description: "Passion fruit, mint, lime juice, sugar, soda, served over ice", price: 240, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Virgin Watermelon Mojito", position: 3, description: "Watermelon, mint, lime juice, sugar, soda, served over ice", price: 240, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Iced Tea", position: 4, description: "Lemon", price: 150, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Shirley Temple", position: 5, description: "Lemon juice, strawberry syrup, soda, served on ice", price: 200, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Fruit Punch", position: 6, description: "Mixed fruits blended with milk and ice", price: 200, imageUrl: nil, enabled: true, categoryId: categoryId)
+            Item(name: "Mock Whiskey", position: 0, description: "Apple juice, lime juice, ginger ale, lime juice, soda", price: 150, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Virgin Mojito", position: 1, description: "Mint, lime juice, sugar, soda, served over ice", price: 240, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Virgin Passion Fruit Mojito", position: 2, description: "Passion fruit, mint, lime juice, sugar, soda, served over ice", price: 260, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Virgin Watermelon Mojito", position: 3, description: "Watermelon, mint, lime juice, sugar, soda, served over ice", price: 260, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Iced Tea", position: 4, description: "Lemon", price: 150, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Shirley Temple", position: 5, description: "Lemon juice, strawberry syrup, soda, served on ice", price: 200, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Fruit Punch", position: 6, description: "Mixed fruits blended with milk and ice", price: 250, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Virgin Blue Lagoon", position: 7, description: "A vibrant blend of blue curaçao syrup, lemonade, and lemon juice, served over ice", price: 240, imageUrl: nil, visibilityScope: .both, categoryId: categoryId)
         ]
         
         for menu in menus {
@@ -146,13 +151,16 @@ struct MenuHelper {
     private static func addAllCocktails(_ database: Database, categoryId: UUID) async throws {
         
         let menus = [
-            Item(name: "Mojito", position: 0, description: "White rum, mint, lime juice, sugar, soda, served over ice", price: 280, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Passion Fruit Mojito", position: 1, description: "White rum, passion fruit, mint, lime juice, soda, served over ice", price: 300, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Watermelon Mojito", position: 2, description: "White rum, watermelon, mint, lime juice, soda, served over ice", price: 300, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Gimlet", position: 3, description: "Gin, simple syrup, lemon juice, served chilled ", price: 300, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Tequila Sunrise", position: 4, description: "Tequila, lemon juice, orange juice, served chilled", price: 350, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Durigo Special", position: 5, description: "White rum, lemon juice, orange juice, strawberry syrup, served chilled", price: 350, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Purple Margarita", position: 6, description: "Butterfly pea tea, fresh lime juice, plus the right amount of tequila and triple sec", price: 400, imageUrl: nil, enabled: true, categoryId: categoryId)
+            Item(name: "Mojito", position: 0, description: "White rum, mint, lime juice, sugar, soda, served over ice", price: 300, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Passion Fruit Mojito", position: 1, description: "White rum, passion fruit, mint, lime juice, soda, served over ice", price: 320, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Watermelon Mojito", position: 2, description: "White rum, watermelon, mint, lime juice, soda, served over ice", price: 320, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Gimlet", position: 3, description: "Gin, simple syrup, lemon juice, served chilled ", price: 350, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Tequila Sunrise", position: 4, description: "Tequila, lemon juice, orange juice, served chilled", price: 450, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Durigo Special", position: 5, description: "White rum, lemon juice, orange juice, strawberry syrup, served chilled", price: 400, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Purple Margarita", position: 6, description: "Butterfly pea tea, fresh lime juice, plus the right amount of tequila and triple sec", price: 450, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Screwdriver", position: 7, description: "A classic mix of smooth vodka and fresh orange juice, served over ice", price: 300, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Cosmopolitan", position: 8, description: "A chic blend of vodka, cranberry juice, lime, and a hint of triple sec", price: 450, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Blue Lagoon", position: 9, description: "An eye-catching cocktail featuring vodka, blue curaçao, and lemonade", price: 300, imageUrl: nil, visibilityScope: .both, categoryId: categoryId)
         ]
         
         for menu in menus {
@@ -163,10 +171,26 @@ struct MenuHelper {
     private static func addAllVodkas(_ database: Database, categoryId: UUID) async throws {
         
         let vodkaMenus = [
-            Item(name: "Smirnoff", position: 0, description: nil, price: 100, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Romanov", position: 1, description: nil, price: 50, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Grey Goose", position: 2, description: nil, price: 390, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Absolut", position: 3, description: nil, price: 380, imageUrl: nil, enabled: true, categoryId: categoryId)
+            Item(name: "Smirnoff", prefix: "peg", position: 0, description: nil, price: 100, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Smirnoff", prefix: "1/2 peg", position: 0, description: nil, price: 50, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Smirnoff", prefix: "qt", position: 0, description: nil, price: 300, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Smirnoff", prefix: "1/2 qt", position: 0, description: nil, price: 150, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            
+            Item(name: "Romanov", prefix: "peg", position: 1, description: nil, price: 50, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Romanov", prefix: "1/2 peg", position: 1, description: nil, price: 25, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Romanov", prefix: "qt", position: 1, description: nil, price: 150, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Romanov", prefix: "1/2 qt", position: 1, description: nil, price: 75, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "Grey Goose", prefix: "peg", position: 2, description: nil, price: 390, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Grey Goose", prefix: "1/2 peg", position: 2, description: nil, price: 195, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Grey Goose", prefix: "qt", position: 2, description: nil, price: 1170, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Grey Goose", prefix: "1/2 qt", position: 2, description: nil, price: 585, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "Absolut", prefix: "peg", position: 3, description: nil, price: 400, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Absolut", prefix: "1/2 peg", position: 3, description: nil, price: 200, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Absolut", prefix: "qt", position: 3, description: nil, price: 1200, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Absolut", prefix: "1/2 qt", position: 3, description: nil, price: 600, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
         ]
         
         for menu in vodkaMenus {
@@ -177,18 +201,66 @@ struct MenuHelper {
     private static func addAllWhiskeys(_ database: Database, categoryId: UUID) async throws {
         
         let whiskeyMenus = [
-            Item(name: "Black Dog", position: 0, description: nil, price: 190, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Black & White", position: 1, description: nil, price: 180, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Teachers", position: 2, description: nil, price: 180, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Vat 69", position: 3, description: nil, price: 140, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Blenders Pride", position: 4, description: nil, price: 90, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Peter Scot", position: 5, description: nil, price: 80, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Signature", position: 6, description: nil, price: 90, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Royal Challenge", position: 7, description: nil, price: 60, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Royal Stag", position: 8, description: nil, price: 50, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Mc Dowell's", position: 9, description: nil, price: 50, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Jack Daniels", position: 10, description: nil, price: 320, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "100 Pipers", position: 11, description: nil, price: 200, imageUrl: nil, enabled: true, categoryId: categoryId)
+            Item(name: "Black Dog", prefix: "peg", position: 0, description: nil, price: 190, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Black Dog", prefix: "1/2 peg", position: 0, description: nil, price: 95, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Black Dog", prefix: "qt", position: 0, description: nil, price: 570, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Black Dog", prefix: "1/2 qt", position: 0, description: nil, price: 285, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "Black & White", prefix: "peg", position: 1, description: nil, price: 190, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Black & White", prefix: "1/2 peg", position: 1, description: nil, price: 95, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Black & White", prefix: "qt", position: 1, description: nil, price: 570, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Black & White", prefix: "1/2 qt", position: 1, description: nil, price: 285, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "Teachers", prefix: "peg", position: 2, description: nil, price: 190, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Teachers", prefix: "1/2 peg", position: 2, description: nil, price: 95, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Teachers", prefix: "qt", position: 2, description: nil, price: 570, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Teachers", prefix: "1/2 qt", position: 2, description: nil, price: 285, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "Vat 69", prefix: "peg", position: 3, description: nil, price: 140, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Vat 69", prefix: "1/2 peg", position: 3, description: nil, price: 70, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Vat 69", prefix: "qt", position: 3, description: nil, price: 420, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Vat 69", prefix: "1/2 qt", position: 3, description: nil, price: 210, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "Blenders Pride", prefix: "peg", position: 4, description: nil, price: 90, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Blenders Pride", prefix: "1/2 peg", position: 4, description: nil, price: 45, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Blenders Pride", prefix: "qt", position: 4, description: nil, price: 270, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Blenders Pride", prefix: "1/2 qt", position: 4, description: nil, price: 135, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "Peter Scot", prefix: "peg", position: 5, description: nil, price: 80, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Peter Scot", prefix: "1/2 peg", position: 5, description: nil, price: 40, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Peter Scot", prefix: "qt", position: 5, description: nil, price: 240, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Peter Scot", prefix: "1/2 qt", position: 5, description: nil, price: 120, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "Signature", prefix: "peg", position: 6, description: nil, price: 90, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Signature", prefix: "1/2 peg", position: 6, description: nil, price: 45, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Signature", prefix: "qt", position: 6, description: nil, price: 270, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Signature", prefix: "1/2 qt", position: 6, description: nil, price: 135, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "Royal Challenge", prefix: "peg", position: 7, description: nil, price: 60, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Royal Challenge", prefix: "1/2 peg", position: 7, description: nil, price: 30, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Royal Challenge", prefix: "qt", position: 7, description: nil, price: 180, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Royal Challenge", prefix: "1/2 qt", position: 7, description: nil, price: 90, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "Royal Stag", prefix: "peg", position: 8, description: nil, price: 50, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Royal Stag", prefix: "1/2 peg", position: 8, description: nil, price: 25, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Royal Stag", prefix: "qt", position: 8, description: nil, price: 150, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Royal Stag", prefix: "1/2 qt", position: 8, description: nil, price: 75, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "Mc Dowell's", prefix: "peg", position: 9, description: nil, price: 60, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Mc Dowell's", prefix: "1/2 peg", position: 9, description: nil, price: 30, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Mc Dowell's", prefix: "qt", position: 9, description: nil, price: 180, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Mc Dowell's", prefix: "1/2 qt", position: 9, description: nil, price: 90, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "Jack Daniels", prefix: "peg", position: 10, description: nil, price: 350, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Jack Daniels", prefix: "1/2 peg", position: 10, description: nil, price: 175, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Jack Daniels", prefix: "qt", position: 10, description: nil, price: 1050, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Jack Daniels", prefix: "1/2 qt", position: 10, description: nil, price: 525, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "100 Pipers", prefix: "peg", position: 11, description: nil, price: 200, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "100 Pipers", prefix: "1/2 peg", position: 11, description: nil, price: 100, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "100 Pipers", prefix: "qt", position: 11, description: nil, price: 600, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "100 Pipers", prefix: "qt", position: 11, description: nil, price: 300, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
         ]
         
         // Additional code to save `whiskeyMenus` to your database or perform other actions can go here
@@ -200,12 +272,46 @@ struct MenuHelper {
     private static func addAllRums(_ database: Database, categoryId: UUID) async throws {
         
         let rumMenus = [
-            Item(name: "Old Monk", subtext: nil, position: 0, description: nil, price: 50, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Bacardi", subtext: "White", position: 1, description: nil, price: 90, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Bacardi", subtext: "Limon", position: 2, description: nil, price: 100, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Bacardi", subtext: "Black", position: 3, description: nil, price: 80, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Makazai", subtext: "White", position: 4, description: nil, price: 140, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Makazai", subtext: "Gold", position: 5, description: nil, price: 160, imageUrl: nil, enabled: true, categoryId: categoryId)
+            Item(name: "Old Monk", prefix: "peg", suffix: nil, position: 0, description: nil, price: 50, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Old Monk", prefix: "1/2 peg", suffix: nil, position: 0, description: nil, price: 25, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Old Monk", prefix: "qt", suffix: nil, position: 0, description: nil, price: 150, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Old Monk", prefix: "1/2 qt", suffix: nil, position: 0, description: nil, price: 75, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            
+            // Bacardi White
+            Item(name: "Bacardi", prefix: "peg", suffix: "White", position: 1, description: nil, price: 90, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Bacardi", prefix: "1/2 peg", suffix: "White", position: 1, description: nil, price: 45, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Bacardi", prefix: "qt", suffix: "White", position: 1, description: nil, price: 270, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Bacardi", prefix: "1/2 qt", suffix: "White", position: 1, description: nil, price: 135, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            // Bacardi Limon
+            Item(name: "Bacardi", prefix: "peg", suffix: "Limon", position: 2, description: nil, price: 100, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Bacardi", prefix: "1/2 peg", suffix: "Limon", position: 2, description: nil, price: 50, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Bacardi", prefix: "qt", suffix: "Limon", position: 2, description: nil, price: 300, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Bacardi", prefix: "1/2 qt", suffix: "Limon", position: 2, description: nil, price: 150, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            // Bacardi Black
+            Item(name: "Bacardi", prefix: "peg", suffix: "Black", position: 3, description: nil, price: 80, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Bacardi", prefix: "1/2 peg", suffix: "Black", position: 3, description: nil, price: 40, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Bacardi", prefix: "qt", suffix: "Black", position: 3, description: nil, price: 240, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Bacardi", prefix: "1/2 qt", suffix: "Black", position: 3, description: nil, price: 120, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            // Makazai White
+            Item(name: "Makazai", prefix: "peg", suffix: "White", position: 4, description: nil, price: 140, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Makazai", prefix: "1/2 peg", suffix: "White", position: 4, description: nil, price: 70, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Makazai", prefix: "qt", suffix: "White", position: 4, description: nil, price: 420, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Makazai", prefix: "1/2 qt", suffix: "White", position: 4, description: nil, price: 210, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            // Makazai Gold
+            Item(name: "Makazai", prefix: "peg", suffix: "Gold", position: 5, description: nil, price: 160, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Makazai", prefix: "1/2 peg", suffix: "Gold", position: 5, description: nil, price: 80, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Makazai", prefix: "qt", suffix: "Gold", position: 5, description: nil, price: 480, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Makazai", prefix: "1/2 qt", suffix: "Gold", position: 5, description: nil, price: 240, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "Mc Dowell's", prefix: "peg", suffix: "White", position: 6, description: nil, price: 50, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Mc Dowell's", prefix: "1/2 peg", suffix: "White", position: 6, description: nil, price: 25, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Mc Dowell's", prefix: "qt", suffix: "White", position: 6, description: nil, price: 150, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Mc Dowell's", prefix: "1/2 qt", suffix: "White", position: 6, description: nil, price: 75, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
         ]
         
         // Additional code to save `rumMenus` to your database or perform other actions can go here
@@ -217,8 +323,21 @@ struct MenuHelper {
     private static func addAllBrandies(_ database: Database, categoryId: UUID) async throws {
         
         let brandyMenus = [
-            Item(name: "Honey Bee", subtext: nil, position: 0, description: nil, price: 40, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Mansion House", subtext: nil, position: 1, description: nil, price: 50, imageUrl: nil, enabled: true, categoryId: categoryId)
+            Item(name: "Honey Bee", prefix: "peg", suffix: nil, position: 0, description: nil, price: 40, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Honey Bee", prefix: "1/2 peg", suffix: nil, position: 0, description: nil, price: 20, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Honey Bee", prefix: "qt", suffix: nil, position: 0, description: nil, price: 120, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Honey Bee", prefix: "1/2 qt", suffix: nil, position: 0, description: nil, price: 60, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "Mansion House", prefix: "peg", suffix: nil, position: 1, description: nil, price: 50, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Mansion House", prefix: "1/2 peg", suffix: nil, position: 1, description: nil, price: 25, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Mansion House", prefix: "qt", suffix: nil, position: 1, description: nil, price: 150, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Mansion House", prefix: "1/2 qt", suffix: nil, position: 1, description: nil, price: 75, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "Morpheus", prefix: "peg", suffix: nil, position: 2, description: nil, price: 90, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Morpheus", prefix: "1/2 peg", suffix: nil, position: 2, description: nil, price: 45, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Morpheus", prefix: "qt", suffix: nil, position: 2, description: nil, price: 270, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Morpheus", prefix: "1/2 qt", suffix: nil, position: 2, description: nil, price: 135, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
         ]
         
         // Additional code to save `brandyMenus` to your database or perform other actions can go here
@@ -230,8 +349,8 @@ struct MenuHelper {
     private static func addAllWines(_ database: Database, categoryId: UUID) async throws {
         
         let wineMenus = [
-            Item(name: "Madeira", subtext: "Red/White", position: 0, description: nil, price: 180, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Port Wine", subtext: nil, position: 1, description: nil, price: 90, imageUrl: nil, enabled: true, categoryId: categoryId)
+            Item(name: "Madeira", suffix: "Red/White", position: 0, description: nil, price: 220, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Port Wine", suffix: nil, position: 1, description: nil, price: 90, imageUrl: nil, visibilityScope: .both, categoryId: categoryId)
         ]
         
         // Additional code to save `wineMenus` to your database or perform other actions can go here
@@ -243,10 +362,25 @@ struct MenuHelper {
     private static func addAllLocalDrinks(_ database: Database, categoryId: UUID) async throws {
         
         let localDrinkMenus = [
-            Item(name: "Urak", subtext: nil, position: 0, description: nil, price: 40, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Cashew/Kaju Feni", subtext: nil, position: 1, description: nil, price: 50, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Ginger Feni", subtext: nil, position: 2, description: nil, price: 50, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Dudshiri", subtext: nil, position: 3, description: nil, price: 50, imageUrl: nil, enabled: true, categoryId: categoryId)
+            Item(name: "Urak", prefix: "peg", suffix: nil, position: 0, description: nil, price: 50, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Urak", prefix: "1/2 peg", suffix: nil, position: 0, description: nil, price: 25, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Urak", prefix: "qt", suffix: nil, position: 0, description: nil, price: 150, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Urak", prefix: "1/2 qt", suffix: nil, position: 0, description: nil, price: 75, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            
+            Item(name: "Cashew/Kaju Feni", prefix: "peg", suffix: nil, position: 1, description: nil, price: 50, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Cashew/Kaju Feni", prefix: "1/2 peg", suffix: nil, position: 1, description: nil, price: 25, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Cashew/Kaju Feni", prefix: "qt", suffix: nil, position: 1, description: nil, price: 150, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Cashew/Kaju Feni", prefix: "1/2 qt", suffix: nil, position: 1, description: nil, price: 75, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            
+            Item(name: "Ginger Feni", prefix: "peg", suffix: nil, position: 2, description: nil, price: 50, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Ginger Feni", prefix: "1/2 peg", suffix: nil, position: 2, description: nil, price: 25, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Ginger Feni", prefix: "qt", suffix: nil, position: 2, description: nil, price: 150, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Ginger Feni", prefix: "1/2 qt", suffix: nil, position: 2, description: nil, price: 75, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            
+            Item(name: "Dudshiri", prefix: "peg", suffix: nil, position: 3, description: nil, price: 50, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Dudshiri", prefix: "1/2 peg", suffix: nil, position: 3, description: nil, price: 25, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Dudshiri", prefix: "qt", suffix: nil, position: 3, description: nil, price: 150, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Dudshiri", prefix: "1/2 qt", suffix: nil, position: 3, description: nil, price: 75, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
         ]
         
         // Additional code to save `localDrinkMenus` to your database or perform other actions can go here
@@ -258,10 +392,25 @@ struct MenuHelper {
     private static func addAllGins(_ database: Database, categoryId: UUID) async throws {
         
         let ginMenus = [
-            Item(name: "Blue Ribbon", subtext: nil, position: 0, description: nil, price: 50, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Greater than (London Dry)", subtext: nil, position: 1, description: nil, price: 120, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Seqer", subtext: nil, position: 2, description: nil, price: 170, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Sativa", subtext: nil, position: 3, description: nil, price: 190, imageUrl: nil, enabled: true, categoryId: categoryId)
+            Item(name: "Blue Ribbon", prefix: "peg", suffix: nil, position: 0, description: nil, price: 50, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Blue Ribbon", prefix: "1/2 peg", suffix: nil, position: 0, description: nil, price: 25, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Blue Ribbon", prefix: "qt", suffix: nil, position: 0, description: nil, price: 150, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Blue Ribbon", prefix: "1/2 qt", suffix: nil, position: 0, description: nil, price: 75, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "Greater than", prefix: "peg", suffix: "London Dry", position: 1, description: nil, price: 120, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Greater than", prefix: "1/2 peg", suffix: "London Dry", position: 1, description: nil, price: 60, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Greater than", prefix: "qt", suffix: "London Dry", position: 1, description: nil, price: 360, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Greater than", prefix: "1/2 qt", suffix: "London Dry", position: 1, description: nil, price: 180, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "Seqer", prefix: "peg", suffix: nil, position: 2, description: nil, price: 170, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Seqer", prefix: "1/2 peg", suffix: nil, position: 2, description: nil, price: 85, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Seqer", prefix: "qt", suffix: nil, position: 2, description: nil, price: 510, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Seqer", prefix: "1/2 qt", suffix: nil, position: 2, description: nil, price: 255, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+
+            Item(name: "Sativa", prefix: "peg", suffix: nil, position: 3, description: nil, price: 190, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Sativa", prefix: "1/2 peg", suffix: nil, position: 3, description: nil, price: 95, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Sativa", prefix: "qt", suffix: nil, position: 3, description: nil, price: 570, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Sativa", prefix: "1/2 qt", suffix: nil, position: 3, description: nil, price: 285, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
         ]
         
         // Additional code to save `ginMenus` to your database or perform other actions can go here
@@ -273,15 +422,15 @@ struct MenuHelper {
     private static func addAllBeers(_ database: Database, categoryId: UUID) async throws {
         
         let beerMenus = [
-            Item(name: "Kingfisher", subtext: "Q", position: 0, description: nil, price: 140, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Kingfisher", subtext: "P", position: 1, description: nil, price: 90, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Tuborg", subtext: nil, position: 2, description: nil, price: 90, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Budweiser", subtext: "C", position: 3, description: nil, price: 160, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Breezer", subtext: nil, position: 4, description: nil, price: 160, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Corona", subtext: nil, position: 5, description: nil, price: 170, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Hoegaarden", subtext: nil, position: 6, description: nil, price: 170, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Kings", subtext: nil, position: 7, description: nil, price: 100, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "People's Lager", subtext: nil, position: 8, description: nil, price: 120, imageUrl: nil, enabled: true, categoryId: categoryId)
+            Item(name: "Kingfisher", suffix: "Q", position: 0, description: nil, price: 140, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Kingfisher", suffix: "P", position: 1, description: nil, price: 90, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Tuborg", suffix: nil, position: 2, description: nil, price: 90, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Budweiser", suffix: "Q", position: 3, description: nil, price: 160, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Budweiser", suffix: "P", position: 4, description: nil, price: 160, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Breezer", suffix: nil, position: 5, description: nil, price: 160, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Corona", suffix: nil, position: 6, description: nil, price: 170, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Hoegaarden", suffix: nil, position: 7, description: nil, price: 170, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "People's Lager", suffix: nil, position: 8, description: nil, price: 120, imageUrl: nil, visibilityScope: .both, categoryId: categoryId)
         ]
         
         // Additional code to save `beerMenus` to your database or perform other actions can go here
@@ -293,10 +442,10 @@ struct MenuHelper {
     private static func addAllSoups(_ database: Database, categoryId: UUID) async throws {
         
         let soupMenus = [
-            Item(name: "Veg. Soup", subtext: nil, position: 0, description: nil, price: 150, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Beef Soup", subtext: nil, position: 1, description: nil, price: 160, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Chicken Soup", subtext: nil, position: 2, description: nil, price: 160, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Mushroom Soup", subtext: nil, position: 3, description: "surchage of rupees 20 applicable on 1 by 2 soups", price: 180, imageUrl: nil, enabled: true, categoryId: categoryId)
+            Item(name: "Veg. Soup", suffix: nil, position: 0, description: nil, price: 150, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Beef Soup", suffix: nil, position: 1, description: nil, price: 160, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Chicken Soup", suffix: nil, position: 2, description: nil, price: 160, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Mushroom Soup", suffix: nil, position: 3, description: "surchage of rupees 20 applicable on 1 by 2 soups", price: 180, imageUrl: nil, visibilityScope: .both, categoryId: categoryId)
         ]
         
         // Additional code to save `soupMenus` to your database or perform other actions can go here
@@ -308,19 +457,17 @@ struct MenuHelper {
     private static func addAllFishItems(_ database: Database, categoryId: UUID) async throws {
         
         let fishMenus = [
-            Item(name: "Chonok Rawa Fry", subtext: nil, position: 0, description: nil, price: 450, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Chonok (Plain/Masala)", subtext: nil, position: 1, description: nil, price: 500, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Shark Rawa Fry", subtext: nil, position: 2, description: nil, price: 400, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Shark (Plain/Masala)", subtext: nil, position: 3, description: nil, price: 450, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Calamari/Squid", subtext: nil, position: 4, description: nil, price: 350, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "King Fish", subtext: nil, position: 5, description: nil, price: 0, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Pomfret", subtext: "Silver", position: 6, description: nil, price: 0, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Mackerel", subtext: nil, position: 7, description: nil, price: 180, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Mackerel (Rechad)", subtext: nil, position: 8, description: nil, price: 200, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Sole Fish", subtext: nil, position: 9, description: nil, price: 250, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Bombill", subtext: "Bombay Duck", position: 10, description: nil, price: 250, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Stuffed Calamari/Squid", subtext: nil, position: 11, description: "Squid stuffed with recheado masala and squid tentacles", price: 400, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Local Fish", subtext: nil, position: 12, description: nil, price: 0, imageUrl: nil, enabled: true, categoryId: categoryId)
+            Item(name: "Chonok Rawa Fry", suffix: nil, position: 0, description: nil, price: 500, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Chonok (Plain/Masala)", suffix: nil, position: 1, description: nil, price: 600, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Shark", suffix: nil, position: 2, description: nil, price: 450, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Calamari/Squid", suffix: nil, position: 3, description: nil, price: 350, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "King Fish", suffix: nil, position: 4, description: nil, price: 0, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Pomfret", suffix: "Silver", position: 5, description: nil, price: 0, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Mackerel", suffix: nil, position: 6, description: nil, price: 200, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Sole Fish", suffix: nil, position: 7, description: nil, price: 250, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Bombill", suffix: "Bombay Duck", position: 8, description: nil, price: 250, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Stuffed Calamari/Squid", suffix: nil, position: 9, description: "Squid stuffed with recheado masala and squid tentacles", price: 400, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Local Fish", suffix: nil, position: 10, description: nil, price: 0, imageUrl: nil, visibilityScope: .both, categoryId: categoryId)
         ]
         
         // Additional code to save `fishMenus` to your database or perform other actions can go here
@@ -332,10 +479,10 @@ struct MenuHelper {
     private static func addAllSeafoodItems(_ database: Database, categoryId: UUID) async throws {
         
         let seafoodMenus = [
-            Item(name: "Prawns", subtext: nil, position: 0, description: nil, price: 380, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Oysters", subtext: nil, position: 1, description: nil, price: 350, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Mussels", subtext: nil, position: 2, description: nil, price: 350, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Crabs", subtext: nil, position: 3, description: nil, price: 0, imageUrl: nil, enabled: true, categoryId: categoryId)
+            Item(name: "Prawns", suffix: nil, position: 0, description: nil, price: 390, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Oysters", suffix: nil, position: 1, description: nil, price: 350, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Mussels", suffix: nil, position: 2, description: nil, price: 350, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Crabs", suffix: nil, position: 3, description: nil, price: 0, imageUrl: nil, visibilityScope: .both, categoryId: categoryId)
         ]
         
         // Additional code to save `seafoodMenus` to your database or perform other actions can go here
@@ -347,14 +494,14 @@ struct MenuHelper {
     private static func addAllVegItems(_ database: Database, categoryId: UUID) async throws {
         
         let vegMenus = [
-            Item(name: "Mushroom Chilli Fry", subtext: nil, position: 0, description: nil, price: 250, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Mushroom Xacuti", subtext: nil, position: 1, description: nil, price: 280, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Mix Veg. Xacuti", subtext: nil, position: 2, description: nil, price: 280, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Gobi Manchurian", subtext: nil, position: 3, description: nil, price: 250, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Mixed Salad", subtext: nil, position: 4, description: nil, price: 150, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "French Fries", subtext: nil, position: 5, description: nil, price: 150, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Corn Jalapeño cheese pops", subtext: nil, position: 6, description: nil, price: 150, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Paneer Chilli", subtext: nil, position: 7, description: nil, price: 250, imageUrl: nil, enabled: true, categoryId: categoryId)
+            Item(name: "Mushroom Chilli Fry", suffix: nil, position: 0, description: nil, price: 250, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Mushroom Xacuti", suffix: nil, position: 1, description: nil, price: 280, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Mix Veg. Xacuti", suffix: nil, position: 2, description: nil, price: 280, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Gobi Manchurian", suffix: nil, position: 3, description: nil, price: 250, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Mixed Salad", suffix: nil, position: 4, description: nil, price: 150, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "French Fries", suffix: nil, position: 5, description: nil, price: 150, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Corn Jalapeño cheese pops", suffix: nil, position: 6, description: nil, price: 150, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Paneer Chilli", suffix: nil, position: 7, description: nil, price: 250, imageUrl: nil, visibilityScope: .both, categoryId: categoryId)
         ]
         
         // Additional code to save `vegMenus` to your database or perform other actions can go here
@@ -366,15 +513,15 @@ struct MenuHelper {
     private static func addAllChickenItems(_ database: Database, categoryId: UUID) async throws {
         
         let chickenMenus = [
-            Item(name: "Chicken Lollipop", subtext: nil, position: 0, description: nil, price: 180, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Chilli Chicken", subtext: "dry/gravy", position: 1, description: nil, price: 250, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Chicken Manchurian", subtext: "dry/gravy", position: 2, description: nil, price: 250, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Crispy Chicken", subtext: nil, position: 3, description: nil, price: 250, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Chicken Cutlets", subtext: nil, position: 4, description: nil, price: 250, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Chicken Dry Fry", subtext: "pieces/leg", position: 5, description: nil, price: 250, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Chicken Chilli Fry", subtext: nil, position: 6, description: nil, price: 250, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Chicken Cafreal", subtext: "dry/gravy", position: 7, description: nil, price: 280, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Chicken Xacuti", subtext: nil, position: 8, description: nil, price: 280, imageUrl: nil, enabled: true, categoryId: categoryId)
+            Item(name: "Chicken Lollipop", suffix: nil, position: 0, description: nil, price: 180, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Chilli Chicken", suffix: "dry/gravy", position: 1, description: nil, price: 250, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Chicken Manchurian", suffix: "dry/gravy", position: 2, description: nil, price: 250, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Crispy Chicken", suffix: nil, position: 3, description: nil, price: 250, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Chicken Cutlets", suffix: nil, position: 4, description: nil, price: 250, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Chicken Dry Fry", suffix: "pieces/leg", position: 5, description: nil, price: 280, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Chicken Chilli Fry", suffix: nil, position: 6, description: nil, price: 250, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Chicken Cafreal", suffix: "dry/gravy", position: 7, description: nil, price: 290, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Chicken Xacuti", suffix: nil, position: 8, description: nil, price: 290, imageUrl: nil, visibilityScope: .both, categoryId: categoryId)
         ]
         
         // Additional code to save `chickenMenus` to your database or perform other actions can go here
@@ -386,15 +533,16 @@ struct MenuHelper {
     private static func addAllPorkItems(_ database: Database, categoryId: UUID) async throws {
         
         let porkMenus = [
-            Item(name: "Sausages", subtext: nil, position: 0, description: nil, price: 150, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Sausage Chilli Fry", subtext: nil, position: 1, description: nil, price: 250, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Sausage Bread", subtext: nil, position: 2, description: nil, price: 90, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Pork Chilli Fry", subtext: nil, position: 3, description: nil, price: 250, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Pork Roast", subtext: nil, position: 4, description: nil, price: 280, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Pork Amsol", subtext: nil, position: 5, description: nil, price: 300, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Pork Bones", subtext: "aadmas", position: 6, description: nil, price: 250, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Pork Chops", subtext: nil, position: 7, description: nil, price: 400, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Sorpatel", subtext: nil, position: 8, description: nil, price: 280, imageUrl: nil, enabled: true, categoryId: categoryId)
+            Item(name: "Sausages", suffix: nil, position: 0, description: nil, price: 150, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Sausage Chilli Fry", suffix: nil, position: 1, description: nil, price: 250, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Sausage Bread", suffix: nil, position: 2, description: nil, price: 90, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Pork Chilli Fry", suffix: nil, position: 3, description: nil, price: 280, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Pork Roast", suffix: nil, position: 4, description: nil, price: 300, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Pork Amsol", suffix: nil, position: 5, description: nil, price: 350, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Pork Bones", suffix: "aadmas", position: 6, description: nil, price: 280, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Pork Chops", suffix: nil, position: 7, description: nil, price: 400, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Sorpotel", suffix: nil, position: 8, description: nil, price: 300, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Pork Vindalo", suffix: nil, position: 9, description: nil, price: 350, imageUrl: nil, visibilityScope: .both, categoryId: categoryId)
         ]
         
         // Additional code to save `porkMenus` to your database or perform other actions can go here
@@ -406,13 +554,13 @@ struct MenuHelper {
     private static func addAllBeefItems(_ database: Database, categoryId: UUID) async throws {
         
         let beefMenus = [
-            Item(name: "Beef Chilli Fry", subtext: nil, position: 0, description: nil, price: 250, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Beef Cutlets", subtext: nil, position: 1, description: nil, price: 250, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Beef Dry Fry", subtext: nil, position: 2, description: nil, price: 300, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Beef Tongue Roast", subtext: nil, position: 3, description: nil, price: 300, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Beef Roulade", subtext: nil, position: 4, description: nil, price: 350, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Beef Cafreal", subtext: nil, position: 5, description: nil, price: 300, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Beef Xacuti", subtext: nil, position: 6, description: nil, price: 300, imageUrl: nil, enabled: true, categoryId: categoryId)
+            Item(name: "Beef Chilli Fry", suffix: nil, position: 0, description: nil, price: 250, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Beef Cutlets", suffix: nil, position: 1, description: nil, price: 250, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Beef Dry Fry", suffix: nil, position: 2, description: nil, price: 300, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Beef Tongue Roast", suffix: nil, position: 3, description: nil, price: 300, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Beef Roulade", suffix: nil, position: 4, description: nil, price: 350, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Beef Cafreal", suffix: nil, position: 5, description: nil, price: 300, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Beef Xacuti", suffix: nil, position: 6, description: nil, price: 300, imageUrl: nil, visibilityScope: .both, categoryId: categoryId)
         ]
         
         // Additional code to save `beefMenus` to your database or perform other actions can go here
@@ -424,11 +572,11 @@ struct MenuHelper {
     private static func addMiscItems(_ database: Database, categoryId: UUID) async throws {
         
         let miscMenus = [
-            Item(name: "Para", subtext: nil, position: 0, description: "Salted fish aged in a vinegar based spiced masala", price: 150, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Dry Fish Salad", subtext: nil, position: 1, description: nil, price: 180, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Sanna", subtext: "per piece", position: 2, description: nil, price: 40, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Bread", subtext: nil, position: 3, description: nil, price: 10, imageUrl: nil, enabled: true, categoryId: categoryId),
-            Item(name: "Paratha", subtext: nil, position: 4, description: nil, price: 30, imageUrl: nil, enabled: true, categoryId: categoryId),
+            Item(name: "Para", suffix: nil, position: 0, description: "Salted fish aged in a vinegar based spiced masala", price: 150, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Dry Fish Salad", suffix: nil, position: 1, description: nil, price: 180, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Sanna", suffix: "per piece", position: 2, description: nil, price: 40, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Bread", suffix: nil, position: 3, description: nil, price: 10, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Paratha", suffix: nil, position: 4, description: nil, price: 30, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
         ]
         
         // Additional code to save `miscMenus` to your database or perform other actions can go here
@@ -440,22 +588,24 @@ struct MenuHelper {
     private static func addRiceItems(_ database: Database, categoryId: UUID) async throws {
         
         let riceMenus = [
-            Item(name: "Plain Rice", subtext: nil, position: 0, description: nil, price: 60, enabled: true, categoryId: categoryId),
-            Item(name: "Prawn Curry Rice", subtext: nil, position: 1, description: nil, price: 290, enabled: true, categoryId: categoryId),
-            Item(name: "Shark Ambot-tik Rice", subtext: nil, position: 2, description: nil, price: 290, enabled: true, categoryId: categoryId),
-            Item(name: "Plain Pulao", subtext: nil, position: 3, description: nil, price: 160, enabled: true, categoryId: categoryId),
-            Item(name: "Veg. Pulao", subtext: nil, position: 4, description: nil, price: 180, enabled: true, categoryId: categoryId),
-            Item(name: "Chicken Pulao", subtext: nil, position: 5, description: nil, price: 200, enabled: true, categoryId: categoryId),
-            Item(name: "Beef Pulao", subtext: nil, position: 6, description: nil, price: 200, enabled: true, categoryId: categoryId),
-            Item(name: "Pork Sausage Pulao", subtext: nil, position: 7, description: nil, price: 200, enabled: true, categoryId: categoryId),
-            Item(name: "Prawns Pulao", subtext: nil, position: 8, description: nil, price: 250, enabled: true, categoryId: categoryId),
-            Item(name: "Veg. Fried Rice", subtext: nil, position: 9, description: nil, price: 180, enabled: true, categoryId: categoryId),
-            Item(name: "Egg Fried Rice", subtext: nil, position: 10, description: nil, price: 180, enabled: true, categoryId: categoryId),
-            Item(name: "Chicken Fried Rice", subtext: nil, position: 11, description: nil, price: 200, enabled: true, categoryId: categoryId),
-            Item(name: "Beef Fried Rice", subtext: nil, position: 12, description: nil, price: 200, enabled: true, categoryId: categoryId),
-            Item(name: "Pork Sausage Fried Rice", subtext: nil, position: 13, description: nil, price: 200, enabled: true, categoryId: categoryId),
-            Item(name: "Prawns Fried Rice", subtext: nil, position: 14, description: nil, price: 250, enabled: true, categoryId: categoryId),
-            Item(name: "Mixed Fried Rice", subtext: nil, position: 15, description: nil, price: 250, enabled: true, categoryId: categoryId)
+            Item(name: "Plain Rice", suffix: nil, position: 0, description: nil, price: 60, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Basmati Rice", suffix: nil, position: 1, description: nil, price: 80, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Prawn Curry Rice", suffix: nil, position: 2, description: nil, price: 290, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Shark Ambot-tik Rice", suffix: nil, position: 3, description: nil, price: 290, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Plain Pulao", suffix: nil, position: 4, description: nil, price: 160, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Veg. Pulao", suffix: nil, position: 5, description: nil, price: 180, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Chicken Pulao", suffix: nil, position: 6, description: nil, price: 200, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Beef Pulao", suffix: nil, position: 7, description: nil, price: 200, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Pork Sausage Pulao", suffix: nil, position: 8, description: nil, price: 200, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Prawns Pulao", suffix: nil, position: 9, description: nil, price: 250, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Veg. Fried Rice", suffix: nil, position: 10, description: nil, price: 180, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Egg Fried Rice", suffix: nil, position: 11, description: nil, price: 180, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Chicken Fried Rice", suffix: nil, position: 12, description: nil, price: 200, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Beef Fried Rice", suffix: nil, position: 13, description: nil, price: 200, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Pork Sausage Fried Rice", suffix: nil, position: 14, description: nil, price: 200, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Prawns Fried Rice", suffix: nil, position: 15, description: nil, price: 250, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Mixed Fried Rice", suffix: nil, position: 16, description: nil, price: 250, visibilityScope: .both, categoryId: categoryId)
+            
         ]
         
         // Additional code to save `riceMenus` to your database or perform other actions can go here
@@ -467,10 +617,12 @@ struct MenuHelper {
     private static func addDessertItems(_ database: Database, categoryId: UUID) async throws {
         
         let desserts = [
-            Item(name: "Ice Cream", subtext: "Vanilla, chocolate, mango", position: 0, description: nil, price: 100, enabled: true, categoryId: categoryId),
-            Item(name: "Caramel Pudding", subtext: "Custard made with eggs, sugar, and milk, with a caramelized sugar bottom", position: 1, description: nil, price: 100, enabled: true, categoryId: categoryId),
-            Item(name: "Chocolate Brownie", subtext: "Chocolate brownie with cashew nuts and walnuts", position: 2, description: nil, price: 100, enabled: true, categoryId: categoryId),
-            Item(name: "Pankcakes", subtext: "Chocolate, Banana, Honey, Lemon, Coconut Jaggery", position: 3, description: nil, price: 100, enabled: true, categoryId: categoryId)
+            Item(name: "Ice Cream", suffix: "Single scoop", position: 0, description: "Vanilla, chocolate, mango", price: 70, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Ice Cream", suffix: "Double scoop", position: 1, description: "Vanilla, chocolate, mango", price: 120, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Caramel Pudding", suffix: nil, position: 2, description: "Custard made with eggs, sugar, and milk, with a caramelized sugar bottom", price: 100, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Chocolate Brownie", suffix: nil, position: 3, description: "Chocolate brownie with cashew nuts and walnuts", price: 100, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Pancakes", suffix: nil, position: 4, description: "Chocolate, Banana, Honey, Lemon, Coconut Jaggery", price: 100, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Chocolate Brownie", suffix: "With ice-cream", position: 5, description: nil, price: 160, visibilityScope: .both, categoryId: categoryId)
         ]
         
         // Additional code to save `desserts` to your database or perform other actions can go here

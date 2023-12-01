@@ -63,8 +63,8 @@ struct MenuController: RouteCollection {
         menu.description = updatedMenu.description
         menu.price = updatedMenu.price
         menu.imageUrl = updatedMenu.imageUrl
-        menu.enabled = updatedMenu.enabled
-        menu.subtext = updatedMenu.subtext
+        menu.visibilityScope = updatedMenu.visibilityScope
+        menu.suffix = updatedMenu.suffix
         menu.description = updatedMenu.description
         try await menu.save(on: req.db)
         return menu
@@ -93,7 +93,7 @@ struct MenuController: RouteCollection {
         
         let convertedCategories = try categories.map { cat in
             let newItems = try cat.items.sorted { $0.position < $1.position }.map { men in
-                ItemResponse(id: try men.requireID(), name: men.name, subtext: men.subtext, description: men.description, price: men.price, imageUrl: men.imageUrl, enabled: men.enabled)
+                ItemResponse(id: try men.requireID(), name: men.name, prefix: men.prefix, suffix: men.suffix, description: men.description, price: men.price, imageUrl: men.imageUrl, visibilityScope: men.visibilityScope)
             }
             let newCat = CategoryResponse(id: try cat.requireID(), name: cat.name, description: cat.description, type: cat.type, items: newItems)
             return newCat

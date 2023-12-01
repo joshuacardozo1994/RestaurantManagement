@@ -224,6 +224,7 @@ final class AuthTests: XCTestCase {
             XCTAssertEqual(res.status, .unauthorized)
             let decoder = JSONDecoder()
             let error = try decoder.decode(ErrorResponse.self, from: res.body)
+            XCTAssertEqual(res.status, .unauthorized)
             XCTAssertEqual(error.reason, "Unauthorized")
         })
     }
