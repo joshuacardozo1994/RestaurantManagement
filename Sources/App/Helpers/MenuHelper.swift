@@ -109,7 +109,8 @@ struct MenuHelper {
             Item(name: "Mineral Water", suffix: "1L", position: 7, description: nil, price: 30, visibilityScope: .both, categoryId: categoryId),
             Item(name: "Mineral Water", suffix: "500 mL", position: 7, description: nil, price: 20, visibilityScope: .both, categoryId: categoryId),
             Item(name: "Fresh Juice", suffix: nil, position: 8, description: nil, price: 160, visibilityScope: .both, categoryId: categoryId),
-            Item(name: "Diet Coke", suffix: nil, position: 9, description: nil, price: 60, visibilityScope: .both, categoryId: categoryId)
+            Item(name: "Diet Coke", suffix: nil, position: 9, description: nil, price: 60, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Ginger Ale", suffix: nil, position: 10, description: nil, price: 90, visibilityScope: .both, categoryId: categoryId)
         ]
         
         // Additional code to save `beverages` to your database or perform other actions can go here
@@ -190,6 +191,24 @@ struct MenuHelper {
             Item(name: "Absolut", prefix: "1/2 peg", position: 3, description: nil, price: 200, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
             Item(name: "Absolut", prefix: "qt", position: 3, description: nil, price: 1200, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
             Item(name: "Absolut", prefix: "1/2 qt", position: 3, description: nil, price: 600, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            
+            
+            Item(name: "Magic Moments", position: 4, description: "green apple, lemon ginger, chocolate", price: 90, imageUrl: nil, visibilityScope: .menu, categoryId: categoryId),
+            
+            Item(name: "Magic Moments", prefix: "peg", suffix: "green apple", position: 4, description: nil, price: 90, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Magic Moments", prefix: "1/2 peg", suffix: "green apple", position: 4, description: nil, price: 45, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Magic Moments", prefix: "qt", suffix: "green apple", position: 4, description: nil, price: 270, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Magic Moments", prefix: "1/2 qt", suffix: "green apple", position: 4, description: nil, price: 135, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            
+            Item(name: "Magic Moments", prefix: "peg", suffix: "lemon ginger", position: 4, description: nil, price: 90, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Magic Moments", prefix: "1/2 peg", suffix: "lemon ginger", position: 4, description: nil, price: 45, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Magic Moments", prefix: "qt", suffix: "lemon ginger", position: 4, description: nil, price: 270, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Magic Moments", prefix: "1/2 qt", suffix: "lemon ginger", position: 4, description: nil, price: 135, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            
+            Item(name: "Magic Moments", prefix: "peg", suffix: "chocolate", position: 4, description: nil, price: 90, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Magic Moments", prefix: "1/2 peg", suffix: "chocolate", position: 4, description: nil, price: 45, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Magic Moments", prefix: "qt", suffix: "chocolate", position: 4, description: nil, price: 270, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Magic Moments", prefix: "1/2 qt", suffix: "chocolate", position: 4, description: nil, price: 135, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId)
 
         ]
         
@@ -225,41 +244,51 @@ struct MenuHelper {
             Item(name: "Blenders Pride", prefix: "1/2 peg", position: 4, description: nil, price: 45, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
             Item(name: "Blenders Pride", prefix: "qt", position: 4, description: nil, price: 270, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
             Item(name: "Blenders Pride", prefix: "1/2 qt", position: 4, description: nil, price: 135, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            
+            Item(name: "Blenders Pride", prefix: "peg", suffix: "Reserve", position: 5, description: nil, price: 120, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Blenders Pride", prefix: "1/2 peg", suffix: "Reserve", position: 5, description: nil, price: 60, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Blenders Pride", prefix: "qt", suffix: "Reserve", position: 5, description: nil, price: 360, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Blenders Pride", prefix: "1/2 qt", suffix: "Reserve", position: 5, description: nil, price: 180, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
 
-            Item(name: "Peter Scot", prefix: "peg", position: 5, description: nil, price: 80, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
-            Item(name: "Peter Scot", prefix: "1/2 peg", position: 5, description: nil, price: 40, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "Peter Scot", prefix: "qt", position: 5, description: nil, price: 240, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "Peter Scot", prefix: "1/2 qt", position: 5, description: nil, price: 120, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Peter Scot", prefix: "peg", position: 6, description: nil, price: 80, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Peter Scot", prefix: "1/2 peg", position: 6, description: nil, price: 40, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Peter Scot", prefix: "qt", position: 6, description: nil, price: 240, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Peter Scot", prefix: "1/2 qt", position: 6, description: nil, price: 120, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
 
-            Item(name: "Signature", prefix: "peg", position: 6, description: nil, price: 90, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
-            Item(name: "Signature", prefix: "1/2 peg", position: 6, description: nil, price: 45, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "Signature", prefix: "qt", position: 6, description: nil, price: 270, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "Signature", prefix: "1/2 qt", position: 6, description: nil, price: 135, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Signature", prefix: "peg", position: 7, description: nil, price: 90, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Signature", prefix: "1/2 peg", position: 7, description: nil, price: 45, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Signature", prefix: "qt", position: 7, description: nil, price: 270, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Signature", prefix: "1/2 qt", position: 7, description: nil, price: 135, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
 
-            Item(name: "Royal Challenge", prefix: "peg", position: 7, description: nil, price: 60, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
-            Item(name: "Royal Challenge", prefix: "1/2 peg", position: 7, description: nil, price: 30, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "Royal Challenge", prefix: "qt", position: 7, description: nil, price: 180, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "Royal Challenge", prefix: "1/2 qt", position: 7, description: nil, price: 90, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Royal Challenge", prefix: "peg", position: 8, description: nil, price: 60, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Royal Challenge", prefix: "1/2 peg", position: 8, description: nil, price: 30, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Royal Challenge", prefix: "qt", position: 8, description: nil, price: 180, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Royal Challenge", prefix: "1/2 qt", position: 8, description: nil, price: 90, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
 
-            Item(name: "Royal Stag", prefix: "peg", position: 8, description: nil, price: 50, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
-            Item(name: "Royal Stag", prefix: "1/2 peg", position: 8, description: nil, price: 25, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "Royal Stag", prefix: "qt", position: 8, description: nil, price: 150, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "Royal Stag", prefix: "1/2 qt", position: 8, description: nil, price: 75, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Royal Stag", prefix: "peg", position: 9, description: nil, price: 50, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Royal Stag", prefix: "1/2 peg", position: 9, description: nil, price: 25, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Royal Stag", prefix: "qt", position: 9, description: nil, price: 150, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Royal Stag", prefix: "1/2 qt", position: 9, description: nil, price: 75, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
 
-            Item(name: "Mc Dowell's", prefix: "peg", position: 9, description: nil, price: 60, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
-            Item(name: "Mc Dowell's", prefix: "1/2 peg", position: 9, description: nil, price: 30, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "Mc Dowell's", prefix: "qt", position: 9, description: nil, price: 180, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "Mc Dowell's", prefix: "1/2 qt", position: 9, description: nil, price: 90, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Mc Dowell's", prefix: "peg", position: 10, description: nil, price: 60, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Mc Dowell's", prefix: "1/2 peg", position: 10, description: nil, price: 30, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Mc Dowell's", prefix: "qt", position: 10, description: nil, price: 180, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Mc Dowell's", prefix: "1/2 qt", position: 10, description: nil, price: 90, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
 
-            Item(name: "Jack Daniels", prefix: "peg", position: 10, description: nil, price: 350, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
-            Item(name: "Jack Daniels", prefix: "1/2 peg", position: 10, description: nil, price: 175, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "Jack Daniels", prefix: "qt", position: 10, description: nil, price: 1050, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "Jack Daniels", prefix: "1/2 qt", position: 10, description: nil, price: 525, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Jack Daniels", prefix: "peg", position: 11, description: nil, price: 350, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Jack Daniels", prefix: "1/2 peg", position: 11, description: nil, price: 175, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Jack Daniels", prefix: "qt", position: 11, description: nil, price: 1050, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Jack Daniels", prefix: "1/2 qt", position: 11, description: nil, price: 525, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
 
-            Item(name: "100 Pipers", prefix: "peg", position: 11, description: nil, price: 200, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
-            Item(name: "100 Pipers", prefix: "1/2 peg", position: 11, description: nil, price: 100, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "100 Pipers", prefix: "qt", position: 11, description: nil, price: 600, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "100 Pipers", prefix: "qt", position: 11, description: nil, price: 300, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "100 Pipers", prefix: "peg", position: 12, description: nil, price: 200, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "100 Pipers", prefix: "1/2 peg", position: 12, description: nil, price: 100, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "100 Pipers", prefix: "qt", position: 12, description: nil, price: 600, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "100 Pipers", prefix: "qt", position: 12, description: nil, price: 300, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            
+            Item(name: "Antiquity", prefix: "peg", position: 13, description: nil, price: 90, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Antiquity", prefix: "1/2 peg", position: 13, description: nil, price: 45, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Antiquity", prefix: "qt", position: 13, description: nil, price: 270, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Antiquity", prefix: "1/2 qt", position: 13, description: nil, price: 135, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
 
         ]
         
@@ -367,20 +396,20 @@ struct MenuHelper {
             Item(name: "Urak", prefix: "qt", suffix: nil, position: 0, description: nil, price: 150, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
             Item(name: "Urak", prefix: "1/2 qt", suffix: nil, position: 0, description: nil, price: 75, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
             
-            Item(name: "Cashew/Kaju Feni", prefix: "peg", suffix: nil, position: 1, description: nil, price: 50, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
-            Item(name: "Cashew/Kaju Feni", prefix: "1/2 peg", suffix: nil, position: 1, description: nil, price: 25, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "Cashew/Kaju Feni", prefix: "qt", suffix: nil, position: 1, description: nil, price: 150, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "Cashew/Kaju Feni", prefix: "1/2 qt", suffix: nil, position: 1, description: nil, price: 75, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Cashew/Kaju Feni", prefix: "peg", suffix: nil, position: 1, description: nil, price: 70, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Cashew/Kaju Feni", prefix: "1/2 peg", suffix: nil, position: 1, description: nil, price: 35, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Cashew/Kaju Feni", prefix: "qt", suffix: nil, position: 1, description: nil, price: 210, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Cashew/Kaju Feni", prefix: "1/2 qt", suffix: nil, position: 1, description: nil, price: 105, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
             
-            Item(name: "Ginger Feni", prefix: "peg", suffix: nil, position: 2, description: nil, price: 50, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
-            Item(name: "Ginger Feni", prefix: "1/2 peg", suffix: nil, position: 2, description: nil, price: 25, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "Ginger Feni", prefix: "qt", suffix: nil, position: 2, description: nil, price: 150, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "Ginger Feni", prefix: "1/2 qt", suffix: nil, position: 2, description: nil, price: 75, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Ginger Feni", prefix: "peg", suffix: nil, position: 2, description: nil, price: 80, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Ginger Feni", prefix: "1/2 peg", suffix: nil, position: 2, description: nil, price: 40, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Ginger Feni", prefix: "qt", suffix: nil, position: 2, description: nil, price: 240, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Ginger Feni", prefix: "1/2 qt", suffix: nil, position: 2, description: nil, price: 120, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
             
-            Item(name: "Dudshiri", prefix: "peg", suffix: nil, position: 3, description: nil, price: 50, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
-            Item(name: "Dudshiri", prefix: "1/2 peg", suffix: nil, position: 3, description: nil, price: 25, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "Dudshiri", prefix: "qt", suffix: nil, position: 3, description: nil, price: 150, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
-            Item(name: "Dudshiri", prefix: "1/2 qt", suffix: nil, position: 3, description: nil, price: 75, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Dudshiri", prefix: "peg", suffix: nil, position: 3, description: nil, price: 80, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Dudshiri", prefix: "1/2 peg", suffix: nil, position: 3, description: nil, price: 40, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Dudshiri", prefix: "qt", suffix: nil, position: 3, description: nil, price: 240, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
+            Item(name: "Dudshiri", prefix: "1/2 qt", suffix: nil, position: 3, description: nil, price: 120, imageUrl: nil, visibilityScope: .bill, categoryId: categoryId),
         ]
         
         // Additional code to save `localDrinkMenus` to your database or perform other actions can go here
@@ -442,9 +471,9 @@ struct MenuHelper {
     private static func addAllSoups(_ database: Database, categoryId: UUID) async throws {
         
         let soupMenus = [
-            Item(name: "Veg. Soup", suffix: nil, position: 0, description: nil, price: 150, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
-            Item(name: "Beef Soup", suffix: nil, position: 1, description: nil, price: 160, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
-            Item(name: "Chicken Soup", suffix: nil, position: 2, description: nil, price: 160, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Veg. Soup", suffix: nil, position: 0, description: nil, price: 160, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Beef Soup", suffix: nil, position: 1, description: nil, price: 180, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Chicken Soup", suffix: nil, position: 2, description: nil, price: 180, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
             Item(name: "Mushroom Soup", suffix: nil, position: 3, description: "surchage of rupees 20 applicable on 1 by 2 soups", price: 180, imageUrl: nil, visibilityScope: .both, categoryId: categoryId)
         ]
         
