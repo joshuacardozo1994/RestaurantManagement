@@ -44,6 +44,9 @@ final class Item: Model, Content {
     @Field(key: "name")
     var name: String
     
+    @Field(key: "alternate_name")
+    var alternateName: String?
+    
     @Field(key: "prefix")
     var prefix: String?
     
@@ -67,6 +70,9 @@ final class Item: Model, Content {
     
     @Parent(key: "category_id")
     var category: Category
+    
+    @Children(for: \.$item)
+    var servingSizes: [ItemServingSizePivot]
     
     // When this Item was created.
     @Timestamp(key: "created_at", on: .create)

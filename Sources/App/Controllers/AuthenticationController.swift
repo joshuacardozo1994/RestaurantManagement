@@ -61,7 +61,7 @@ struct AuthenticationController: RouteCollection {
         guard let user = try await User.find(req.parameters.get("userID"), on: req.db) else {
             throw Abort(.notFound)
         }
-        var updatedUser = user
+        let updatedUser = user
         
         if let username = updateUserData.username {
             updatedUser.username = username

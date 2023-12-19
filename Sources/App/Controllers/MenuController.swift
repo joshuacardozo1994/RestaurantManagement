@@ -85,21 +85,14 @@ struct MenuController: RouteCollection {
         return category
     }
     
-    func getAllCategoriesHandler(_ req: Request) async throws -> [CategoryResponse] {        
-        let categories = try await Category.query(on: req.db)
-            .with(\.$items)
-            .all()
-            .sorted { $0.position < $1.position }
-        
-        let convertedCategories = try categories.map { cat in
-            let newItems = try cat.items.sorted { $0.position < $1.position }.map { men in
-                ItemResponse(id: try men.requireID(), name: men.name, prefix: men.prefix, suffix: men.suffix, description: men.description, price: men.price, imageUrl: men.imageUrl, visibilityScope: men.visibilityScope)
-            }
-            let newCat = CategoryResponse(id: try cat.requireID(), name: cat.name, description: cat.description, type: cat.type, items: newItems)
-            return newCat
-        }
-        
-        return convertedCategories
+    func getAllCategoriesHandler(_ req: Request) async throws -> [Category] {
+        try await Category.query(on: req.db)
+                    .with(\.$items) { items in
+                        items.with(\.$servingSizes) { servingSizePivot in
+                            servingSizePivot.with(\.$servingSize)
+                        }
+                    }
+                    .all()
     }
 
     
