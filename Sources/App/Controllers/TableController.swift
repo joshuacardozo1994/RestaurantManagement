@@ -21,7 +21,7 @@ struct TableController: RouteCollection {
     
     // MARK: - Table Handlers
     
-    /// Retrieves all `Table` instances from the database, along with their associated `currentStaff` and `bill`.
+    /// Retrieves all ``Table`` instances from the database, along with their associated ``Table/currentStaff`` and ``Table/bill``.
     ///
     /// This asynchronous function fetches all records from the `tables` table and performs eager loading of related `currentStaff` and `bill` for each `Table`. This is done to efficiently gather and return all related data in a single API call.
     ///

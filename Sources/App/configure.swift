@@ -26,9 +26,12 @@ public func configure(_ app: Application) async throws {
     
     
     // migrations
+    
     app.migrations.add(CreateUser())
+    app.migrations.add(CreateServingSize())
     app.migrations.add(CreateCategory())
     app.migrations.add(CreateItem())
+    app.migrations.add(CreateItemServingSizePivot())
     app.migrations.add(CreateTable())
     app.migrations.add(CreateBill())
     app.migrations.add(CreateOrder())
@@ -36,8 +39,11 @@ public func configure(_ app: Application) async throws {
     
     // seeders
     app.migrations.add(UserSeeder())
-    app.migrations.add(MenuSeeder())
+    app.migrations.add(ServingSizeSeeder())
     app.migrations.add(TableSeeder())
+    app.migrations.add(MenuSeeder())
+    
+    
     
     try app.autoMigrate().wait()
 

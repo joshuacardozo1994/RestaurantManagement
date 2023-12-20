@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Joshua Cardozo on 28/10/23.
 //
@@ -16,7 +16,7 @@ struct MenuController: RouteCollection {
         protectedMenuRoutes.post(use: createMenuHandler)
         protectedMenuRoutes.put(":itemID", use: updateMenuHandler)
         protectedMenuRoutes.delete(":itemID", use: deleteMenuHandler)
-
+        
         // Public routes (No JWT required)
         menusRoute.get(use: getAllMenusHandler)
         menusRoute.get(":itemID", use: getSingleMenuHandler)
@@ -85,23 +85,25 @@ struct MenuController: RouteCollection {
         return category
     }
     
-    func getAllCategoriesHandler(_ req: Request) async throws -> [CategoryResponse] {        
-        let categories = try await Category.query(on: req.db)
-            .with(\.$items)
-            .all()
-            .sorted { $0.position < $1.position }
-        
-        let convertedCategories = try categories.map { cat in
-            let newItems = try cat.items.sorted { $0.position < $1.position }.map { men in
-                ItemResponse(id: try men.requireID(), name: men.name, prefix: men.prefix, suffix: men.suffix, description: men.description, price: men.price, imageUrl: men.imageUrl, visibilityScope: men.visibilityScope)
+    func getAllCategoriesHandler(_ req: Request) async throws -> [CategoryResponse] {
+        let allData = try await Category.query(on: req.db)
+            .with(\.$items) { items in
+                items.with(\.$servingSizes) { servingSizePivot in
+                    servingSizePivot.with(\.$servingSize)
+                }
             }
-            let newCat = CategoryResponse(id: try cat.requireID(), name: cat.name, description: cat.description, type: cat.type, items: newItems)
-            return newCat
-        }
+            .all()
         
-        return convertedCategories
+        return try allData.map { allDataCategory in
+            CategoryResponse(id: try allDataCategory.requireID(), name: allDataCategory.name, description: allDataCategory.description, type: allDataCategory.type, items: try allDataCategory.items.map({ allDataCategoryItem in
+                let servingSizes = try allDataCategoryItem.servingSizes.map({ itemServingSizePivot in
+                    ServingSizeResponse(id: try itemServingSizePivot.servingSize.requireID(), name: itemServingSizePivot.servingSize.name, description: itemServingSizePivot.servingSize.description, expression: itemServingSizePivot.servingSize.expression, shouldDisplay: itemServingSizePivot.servingSize.shouldDisplay)
+                })
+                return ItemResponse(id: try allDataCategoryItem.requireID(), name: allDataCategoryItem.name, prefix: allDataCategoryItem.prefix, suffix: allDataCategoryItem.suffix, description: allDataCategoryItem.description, price: allDataCategoryItem.price, imageUrl: allDataCategoryItem.imageUrl, visibilityScope: allDataCategoryItem.visibilityScope, servingSizes: servingSizes.count > 0 ? servingSizes : nil)
+            }))
+        }
     }
-
+    
     
     func getSingleCategoryHandler(_ req: Request) async throws -> Category {
         guard let category = try await Category.find(req.parameters.get("categoryID"), on: req.db) else {
