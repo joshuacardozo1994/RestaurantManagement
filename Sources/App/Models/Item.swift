@@ -44,8 +44,8 @@ final class Item: Model, Content {
     @Field(key: "name")
     var name: String
     
-    @Field(key: "alternate_name")
-    var alternateName: String?
+//    @Field(key: "alternate_name")
+//    var alternateName: String?
     
     @Field(key: "prefix")
     var prefix: String?

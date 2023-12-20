@@ -12,6 +12,7 @@ struct CreateServingSize: Migration {
         database.schema(ServingSize.schema)
             .id()
             .field("name", .string, .required)
+            .field("should_display", .bool, .required)
             .field("description", .string, .required)
             .field("expression", .string, .required)
             .create()

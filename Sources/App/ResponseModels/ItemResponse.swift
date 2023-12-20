@@ -16,4 +16,5 @@ struct ItemResponse: Content {
     var price: Double
     var imageUrl: String?
     var visibilityScope: Item.VisibilityScope
+    var servingSizes: [ServingSizeResponse]?
 }

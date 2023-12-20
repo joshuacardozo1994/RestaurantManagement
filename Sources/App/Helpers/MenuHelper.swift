@@ -491,7 +491,7 @@ struct MenuHelper {
             Item(name: "Kingfisher", suffix: "P", position: 1, description: nil, price: 90, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
             Item(name: "Tuborg", suffix: nil, position: 2, description: nil, price: 90, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
             Item(name: "Budweiser", suffix: "Q", position: 3, description: nil, price: 160, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
-            Item(name: "Budweiser", suffix: "P", position: 4, description: nil, price: 160, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
+            Item(name: "Budweiser", suffix: "P", position: 4, description: nil, price: 90, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
             Item(name: "Breezer", suffix: nil, position: 5, description: nil, price: 160, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
             Item(name: "Corona", suffix: nil, position: 6, description: nil, price: 170, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
             Item(name: "Hoegaarden", suffix: nil, position: 7, description: nil, price: 170, imageUrl: nil, visibilityScope: .both, categoryId: categoryId),
@@ -710,7 +710,8 @@ struct MenuHelper {
             ServingSize(name: "1/2 peg", description: "30 ml", expression: "x/2"),
             ServingSize(name: "1 qt", description: "180 ml", expression: "3*x"),
             ServingSize(name: "1/2 qt", description: "90 ml", expression: "3*x/2"),
-            ServingSize(name: "1/2", description: "1/2 for soups", expression: "x/2 + 10")
+            ServingSize(name: "Normal", shouldDisplay: false, description: "for a normal item", expression: "x"),
+            ServingSize(name: "1/2", description: "1/2 for soups", expression: "x + 20")
         ]
         
         for servingSize in servingSizes {
